@@ -1,6 +1,8 @@
 import React , { useState } from "react";
 import './Register.css';
-import { Navigate, useNavigate } from "react-router-dom";
+import axios from 'axios';
+
+import { useNavigate } from "react-router-dom";
 const voyage = './Voyage.png';
 
 export const Register = () => {
@@ -10,7 +12,7 @@ export const Register = () => {
     const [password,setPassword] = useState("");
     const [confirmPassword,setConfirmPassword] = useState("");
     const [checkPrivacy,setCheckPrivacy] = useState("");
-
+    const [isSubmitting, setIsSubmitting] = useState(false);
     //defing the errors states
     const [errors,setErrors] = useState({
         email:"",
@@ -23,7 +25,7 @@ export const Register = () => {
 
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         let formErrors = { ...errors};
@@ -75,11 +77,39 @@ export const Register = () => {
             setErrors(formErrors);
             return;
         }
+        
+        setIsSubmitting(true);
+        try {
+            const response = await axios.post("http://localhost:5000/register", {
+                email,
+                username,
+                password,
+            });
 
-        alert("Form submitted successfully!");
+            alert(response.data.message);
+            navigate('/login');
+        }catch(error){
+            if(error.response) {
+                setErrors({
+                    email:error.response.data.message || '',
+                    username:error.response.data.message || '',
+                    password:error.response.data.message || '',
+                    confirmPassword:error.response.data.message || '',
+                });
+            }
+            else{
+                setErrors({
+                    ...errors,
+                    email: "An error occurred. Please try again.",
+                });
+            }
+        } finally {
+            setIsSubmitting(false);
+        }
+        
 
-        navigate('/login');
-    }
+        
+    };
 
     return (
         <div class='Register-card'>
@@ -105,7 +135,7 @@ export const Register = () => {
                 />
                 {errors.username && <span className="errors">{errors.username}</span>}
                 <input
-                type="Password"
+                type="password"
                 id="ePassword"
                 name="ePassword"
                 placeholder="Password"
@@ -114,7 +144,7 @@ export const Register = () => {
                 />
                 {errors.password && <span className="errors">{errors.password}</span>}
                 <input
-                type="Password"
+                type="password"
                 id="ePassword"
                 name="ePassword"
                 placeholder="Confirm Password"
@@ -127,8 +157,8 @@ export const Register = () => {
                 <div id="Priv">Confirm for agreeing with Privacy Policy</div>
                 </div>
                 {errors.checkPrivacy && <span className="errors">{errors.checkPrivacy}</span>}    
-                <button class="Signup">
-                    Sign Up
+                <button class="Signup" disabled={isSubmitting}>
+                {isSubmitting? 'Submitting...' : 'Sign Up'}
                 </button>            
             </div>
             </form>
