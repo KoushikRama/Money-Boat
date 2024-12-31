@@ -1,0 +1,265 @@
+.Register-card{
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-top: 13vh;
+    height:66%;
+    margin-bottom: 13vh;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+
+}
+.Register-space{
+    padding-left: 6.25vw;
+    padding-right: 6.25vw;
+    padding-top: 10vh;
+    padding-bottom: 50px;
+    width:25vw;
+    order:1;
+}
+#email, #eUsername , #ePassword{
+    width:25vw;
+    height:30px;
+    padding:5px;
+    margin:10px;
+    border-radius: 10px;
+    background-color:#F5F5F5;
+    color: #000000;
+    border-color: #F5F5F5;
+    font-size: 15px;
+    font-family: 'Quicksand';
+    
+}
+
+.Privacy{
+    flex-direction: row;
+    display:flex;
+    align-items: flex-start;
+    width:25vw;
+
+    
+}
+input[type="checkbox"] {
+    width: 25px;  /* Increase width */
+    height: 25px; /* Increase height */
+    margin-top: 10px;
+    border-color: #0E00FF;
+}
+#Priv{
+    padding-left: 10px;
+    margin-top: 15px;
+    color:#0E00FF;
+    font-family: 'Quicksand';
+}
+.Signup{
+    width: 26vw;
+    height: 43px;
+    padding: 5px;
+    margin: 10px 0px 0px 5px;
+    border-radius: 10px;
+    background-color: #0E00FF;
+    color: #FBFBFB;
+    font-weight: 600;
+    font-size:18px;
+    font-family: 'Quicksand';
+
+    margin-bottom: 15px;
+}
+.design{
+    flex-direction: column;
+    display:flex;
+}
+#cap{
+    font-size: 45px;
+    padding: 10vh 0 10vh 0vh;
+    font-family: 'Poppins';
+    font-weight: 600;
+    order:2;
+}
+#phone_cap{
+    display: none;
+}
+#voyage{
+    width:45vw;
+    order:3;
+}
+.errors{
+    color: red;
+    margin-top:3px;
+    padding-left: 10px;
+    padding-bottom:30px;
+    
+}
+@media (max-width: 1536px) {
+
+    .login-space {
+        width: 40vw; /* Take up more width */
+        margin: 0 auto; /* Center-align */
+        padding-top: 10vh; /* Adjust padding */
+    }
+
+    #email, #eUsername, #ePassword {
+        width: 97%; /* Stretch inputs to container width */
+    }
+
+    .Signup {
+        width: 100%; /* Stretch button to container width */
+    }
+
+    .Privacy {
+        width: 100%; /* Stretch container */
+
+    }
+
+    #cap{
+        font-size: 40px;
+        padding: 10vh 0 10vh 0vh;
+        font-family: 'Poppins';
+        font-weight: 600;
+        max-width: 50vw;
+    }
+    
+    #voyage{
+        width:45vw;
+    }
+
+
+}
+
+/* For medium screens (tablets and smaller) */
+@media (max-width: 1100px) {
+    .Register-card {
+        margin-left: 5vw;
+        margin-right: 5vw;
+        margin-top: 10vh;
+        margin-bottom: 10vh;
+        flex-direction: column; /* Stack content vertically */
+        height: auto; /* Adjust height for content */
+    }
+
+    .Register-space {
+        width: 80%; /* Take up more width */
+        margin: 0 auto; /* Center-align */
+        padding-top: 5vh; /* Adjust padding */
+    }
+
+    #email ,#eUsername, #ePassword {
+        width: 100%; /* Stretch inputs to container width */
+    }
+
+    .Signup {
+        width: 100%; /* Stretch button to container width */
+    }
+
+    .Privacy {
+        width: 100%; /* Stretch container */
+        margin-left:10px; /* Center align content */
+    }
+}
+
+/* For small screens (mobile devices) */
+@media (max-width: 768px) {
+    .Register-card {
+        margin-left: 5vw;
+        margin-right: 5vw;
+        margin-top: 3vh;
+        margin-bottom: 5vh;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .Welcome {
+        font-size: 32px;
+        padding-top: 5vh;
+        text-align: center;
+    }
+
+    .Tagline {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    #boat {
+        width: 120px;
+        height: 80px;
+        margin: 0 auto;
+        padding-top: 0;
+    }
+
+    .login-space {
+        width: 90%;
+        margin: 0 auto;
+        padding-top: 2vh;
+    }
+
+    #Username, #Password {
+        width: 100%;
+    }
+
+    .Loginbutton {
+        width: 100%;
+    }
+
+    .loggedin {
+        width: 100%;
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center;
+    }
+
+
+}
+@media (max-width: 420px) {
+    .Register-card {
+        width:80vw;
+        margin-left:10vw;
+        margin-right:10vw;
+        margin-top: 80px;
+        margin-bottom:80px;
+        flex-direction: column;
+        height: 70vh;
+        overflow: scroll;
+    }
+
+
+    .Register-space {
+        width: 58vw;
+        margin:0 5vw 1vh 5vw;
+        padding-top:3vh;
+        padding-bottom:3vh;
+        
+    }
+
+    #email, #eUsername, #ePassword {
+        width: 50vw;
+        height:20px;
+    }
+
+    .Signup {
+        width: 55vw;
+    }
+
+    .Privacy {
+        width: 50vw;
+        flex-direction: row; /* Stack elements vertically */
+        align-items: center;
+    }
+    #phone_cap{
+        font-size: 15px;
+        padding: 5vh 0 0vh 5vh;
+        font-family: 'Poppins';
+        font-weight: 600;
+        max-width: 50vw;
+        display:flex;
+    }
+    #cap{
+        display:none;
+    }
+
+    #voyage{
+        padding: 3vh 0 5vh 3vw;
+        width:300px;
+    }
+
+
+}

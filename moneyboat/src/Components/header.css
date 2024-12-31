@@ -1,0 +1,90 @@
+.navbar{
+    flex-direction: row;
+    display: flex;
+    height:10vh;
+    width:100vw;
+    flex-wrap: wrap;
+
+}
+#MoneyBoatLogo{
+    height: 12vh;
+    width: 9vw;
+    min-height: 80px;
+    min-width: 130px;
+    margin-left: 5vw;
+    padding-top: 2vh;
+}
+.navbar ul{
+    display: flex;
+    flex-direction: row;
+    color: whitesmoke;
+    font-family: 'Poppins' ;
+    list-style-type: none;
+    margin-top: 5vh;
+    padding-left: 2.5vw;
+    margin-bottom: 0px;
+    font-size: 23px;
+    font-weight: 500;
+    
+}
+.navbar ul li a{
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 23px;
+    font-weight: 600;
+}
+.navbar ul li{
+    padding-left: 2.5vw;
+    padding-right: 2.5vw;
+    padding-top: 4vh;
+
+
+}
+
+@media (max-width: 1100px) {
+    .navbar ul {
+        margin-top: 100px;
+        padding-left: 69px;
+        margin-bottom: 0px;
+        font-size: 25px;
+        font-weight: 500;
+        flex-direction: row;
+    }
+
+    .navbar ul li {
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 10px;
+        padding-bottom: 0px;
+    }
+
+    #MoneyBoatLogo {
+        height: 100px;
+        width: auto;
+        padding-left: 100px;
+        padding-top: 50px;
+    }
+}
+@media (max-width: 768px) {
+    .navbar ul {
+        margin-top: 80px;
+        padding-left: 68px;
+        margin-bottom: 0px;
+        font-size: 30px;
+        font-weight: 500;
+        flex-direction: row;
+    }
+
+    .navbar ul li {
+        padding-left: 37px;
+        padding-right: 47px;
+        padding-top: 10px;
+    }
+
+    #MoneyBoatLogo {
+        height: 100px;
+        width: auto;
+        padding-left: 0px;
+        padding-top: 30px;
+    }
+}

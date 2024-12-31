@@ -1,0 +1,258 @@
+.Login-card{
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-top: 13vh;
+    height:66%;
+    margin-bottom: 13vh;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+
+}
+.Welcome{
+    font-size: 50px;
+    font-weight: 500;
+    padding-top: 18vh;
+    padding-left: 5vw;
+}
+.Tagline{
+    font-size: 30px;
+    font-weight: 400;
+    padding-left: 5vw;
+    padding-bottom: 1vh;
+}
+#underline{
+    padding-left: 5vw;
+    padding-bottom: 150px;
+    width: 400px;
+}
+#boat{
+    width: 213px;
+    height:125px;
+    padding-top: 30vh;
+}
+.login-space{
+    padding-left: 6.25vw;
+    padding-right: 6.25vw;
+    padding-top: 10vh;
+    padding-bottom: 50px;
+    width:25vw;
+}
+#Username , #Password{
+    width:25vw;
+    height:30px;
+    padding:5px;
+    margin:5px;
+    border-radius: 10px;
+    background-color:#F5F5F5;
+    color: #000000;
+    border-color: #F5F5F5;
+    font-size: 15px;
+    font-family: 'Quicksand';
+    
+}
+
+.loggedin{
+    flex-direction: row;
+    display:flex;
+    align-items: flex-start;
+    width:25vw;
+
+    
+}
+input[type="checkbox"] {
+    width: 25px;  /* Increase width */
+    height: 25px; /* Increase height */
+    margin-top: 10px;
+    border-color: #0E00FF;
+}
+#stay{
+    padding-left: 10px;
+    margin-top: 10px;
+    color:#0E00FF;
+    font-family: 'Quicksand';
+}
+.Loginbutton{
+    width: 26vw;
+    height: 43px;
+    padding: 5px;
+    margin: 10px 0px 0px 5px;
+    border-radius: 10px;
+    background-color: #0E00FF;
+    color: #FBFBFB;
+    font-weight: 600;
+    font-size:18px;
+    font-family: 'Quicksand';
+
+    margin-bottom: 15px;
+}
+.ForgotPassword{
+    max-width: max-content;
+}
+a {
+
+    color:#0E00FF;
+    font-weight: 400;
+    font-family: 'Quicksand';
+    text-decoration: none;
+}
+#dont_have{
+    margin-top: 15px;
+    max-width: max-content;
+}
+@media (max-width: 1536px) {
+
+
+    .Welcome {
+        font-size: 42px; /* Reduce font size */
+        padding-left:4vw;
+        padding-right: 4vw;
+    }
+
+    .Tagline {
+        font-size: 25px; /* Reduce font size */
+        padding-left:4vw;
+    }
+    #underline{
+        width: 350px;
+        padding-left: 4vw;
+    }
+
+    #boat {
+        display: none;
+    }
+
+    .login-space {
+        width: 30vw; /* Take up more width */
+        margin: 0 auto; /* Center-align */
+        padding-top: 10vh; /* Adjust padding */
+    }
+
+    #Username, #Password {
+        width: 97%; /* Stretch inputs to container width */
+    }
+
+    .Loginbutton {
+        width: 100%; /* Stretch button to container width */
+    }
+
+    .loggedin {
+        width: 100%; /* Stretch container */
+
+    }
+}
+
+/* For medium screens (tablets and smaller) */
+@media (max-width: 1024px) {
+    .Login-card {
+        margin-left: 5vw;
+        margin-right: 5vw;
+        margin-top: 10vh;
+        margin-bottom: 10vh;
+        flex-direction: column; /* Stack content vertically */
+        height: auto; /* Adjust height for content */
+    }
+
+    .Welcome {
+        font-size: 40px; /* Reduce font size */
+        padding-top: 10vh; /* Adjust padding for vertical alignment */
+        padding-left: 0;
+        text-align: center; /* Center-align text */
+    }
+
+    .Tagline {
+        font-size: 24px; /* Reduce font size */
+        padding-left: 0;
+        text-align: center; /* Center-align text */
+    }
+
+    #boat {
+        width: 150px;
+        height: 100px;
+        padding-top: 0;
+        margin: 0 auto; /* Center the boat image */
+    }
+
+    .login-space {
+        width: 80%; /* Take up more width */
+        margin: 0 auto; /* Center-align */
+        padding-top: 5vh; /* Adjust padding */
+    }
+
+    #Username, #Password {
+        width: 100%; /* Stretch inputs to container width */
+    }
+
+    .Loginbutton {
+        width: 100%; /* Stretch button to container width */
+    }
+
+    .loggedin {
+        width: 100%; /* Stretch container */
+        justify-content: center; /* Center align content */
+    }
+}
+
+/* For small screens (mobile devices) */
+@media (max-width: 768px) {
+    .Login-card {
+        margin-left: 5vw;
+        margin-right: 5vw;
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .Welcome {
+        font-size: 32px;
+        padding-top: 5vh;
+        text-align: center;
+    }
+
+    .Tagline {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    #boat {
+        width: 120px;
+        height: 80px;
+        margin: 0 auto;
+        padding-top: 0;
+    }
+
+    .login-space {
+        width: 90%;
+        margin: 0 auto;
+        padding-top: 2vh;
+    }
+
+    #Username, #Password {
+        width: 100%;
+    }
+
+    .Loginbutton {
+        width: 100%;
+    }
+
+    .loggedin {
+        width: 100%;
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center;
+    }
+
+    #stay {
+        text-align: center;
+    }
+
+    a {
+        font-size: 14px; /* Reduce font size for links */
+    }
+
+    #dont_have {
+        text-align: center;
+        margin-top: 10px;
+    }
+}
