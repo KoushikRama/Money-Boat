@@ -39,6 +39,7 @@ app.post('/register', async(req,res) => {
         //checking if email exists already
         const emailExists = await pool.query('SELECT * FROM "user" WHERE email = $1;',[email]);
         if(emailExists.rows.length>0){
+            
             return res.status(400).json({message: "User already exists"});
         }
 
@@ -64,6 +65,31 @@ app.post('/register', async(req,res) => {
         res.status(500).json({message:'server Error'});
     }
 
+})
+
+
+app.post('/login',async(req,res)=>{
+    const { username , password } = req.body;
+    console.log('Received login data:', req.body);
+    try{
+        const userExists = await pool.query('SELECT * FROM "user" WHERE username = $1',[username]);
+        if(userExists.rows.length === 0){
+            console.log(userExists.rows);
+            return res.status(400).json({message: "User doesn't exist"});
+        }
+
+        const user=userExists.rows[0];
+        const passwordMatch = await bcrypt.compare(password,user.password);
+
+        if(!passwordMatch){
+            return res.status(400).json({message:"Incorrect Password,Try again"});
+        }
+
+        res.status(200).json({message:"Login Succesful",user:{ id:user.id , username:user.username , email:user.email}});
+    }catch(err){
+        console.log('Error during login',err);
+        res.status(500).json({message:'server error'});
+    }
 })
 
 
