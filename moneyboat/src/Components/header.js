@@ -5,7 +5,7 @@ const logo = '/MoneyBoatLogo.png';
 
 export const Header =() =>{
    return (
-      <nav className="navbar">
+      <nav className="navbar spot">
          <img src={logo} id="MoneyBoatLogo" />
          <ul>
             <li><Link to="/home">Home</Link></li>

@@ -1,9 +1,6 @@
 .Register-card{
-    margin-left: 5vw;
-    margin-right: 5vw;
-    margin-top: 13vh;
-    height:66%;
-    margin-bottom: 13vh;
+    margin: 23vh 5vw 17vh 5vw;
+    height:60%;
     background-color: white;
     border-radius: 20px;
     display: flex;
@@ -11,10 +8,7 @@
 
 }
 .Register-space{
-    padding-left: 6.25vw;
-    padding-right: 6.25vw;
-    padding-top: 10vh;
-    padding-bottom: 50px;
+    padding: 10vh 6.25vw 4.75vh 6.25vw;
     width:25vw;
     order:1;
 }
@@ -29,7 +23,6 @@
     border-color: #F5F5F5;
     font-size: 15px;
     font-family: 'Quicksand';
-    
 }
 
 .Privacy{
@@ -37,8 +30,6 @@
     display:flex;
     align-items: flex-start;
     width:25vw;
-
-    
 }
 input[type="checkbox"] {
     width: 25px;  /* Increase width */
@@ -56,15 +47,13 @@ input[type="checkbox"] {
     width: 26vw;
     height: 43px;
     padding: 5px;
-    margin: 10px 0px 0px 5px;
+    margin: 10px 0px 15px 5px;
     border-radius: 10px;
     background-color: #0E00FF;
     color: #FBFBFB;
     font-weight: 600;
     font-size:18px;
     font-family: 'Quicksand';
-
-    margin-bottom: 15px;
 }
 .design{
     flex-direction: column;
@@ -87,9 +76,7 @@ input[type="checkbox"] {
 .errors{
     color: red;
     margin-top:3px;
-    padding-left: 10px;
-    padding-bottom:30px;
-    
+    padding: 0 0 30px 10px;   
 }
 @media (max-width: 1536px) {
 

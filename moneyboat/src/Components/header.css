@@ -1,45 +1,45 @@
 .navbar{
     flex-direction: row;
     display: flex;
-    height:10vh;
-    width:100vw;
+    height:11vh;
+    width:100vw;   
     flex-wrap: wrap;
-
+    background-color: #3C1AFF;
+}
+.spot{
+    position:fixed;
+    top:0;
+    right:0;
+    left:0;
+    overflow-y: hidden;
 }
 #MoneyBoatLogo{
-    height: 12vh;
-    width: 9vw;
-    min-height: 80px;
-    min-width: 130px;
-    margin-left: 5vw;
-    padding-top: 2vh;
+    height: 9vh;
+    width: 7.5vw;
+    min-height: 50px;
+    min-width: 45px;
+    margin: 0 0 0 5vw;
+    padding : 2vh 0 0 0;
 }
+
 .navbar ul{
     display: flex;
     flex-direction: row;
-    color: whitesmoke;
-    font-family: 'Poppins' ;
     list-style-type: none;
-    margin-top: 5vh;
-    padding-left: 2.5vw;
-    margin-bottom: 0px;
-    font-size: 23px;
+    margin: 1.5vh 0 0 0;
     font-weight: 500;
-    
+}
+.navbar ul li{
+    padding: 6vh 2.5vw 0 2.5vw;
 }
 .navbar ul li a{
     text-decoration: none;
     color: whitesmoke;
-    font-size: 23px;
+    font-family: 'Poppins';
+    font-size: 18px;
     font-weight: 600;
 }
-.navbar ul li{
-    padding-left: 2.5vw;
-    padding-right: 2.5vw;
-    padding-top: 4vh;
 
-
-}
 
 @media (max-width: 1100px) {
     .navbar ul {
