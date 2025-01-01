@@ -57,9 +57,10 @@ export const Login = () => {
             // Catch block to handle errors
             if (error.response) {
                 setErrors({
-                    username: error.response.data.message || "",
-                    password: error.response.data.message || "",
+                    username: error.response.data.errors.username || "",
+                    password: error.response.data.errors.password || "",
                 });
+                
             } else {
                 setErrors({
                     ...errors,

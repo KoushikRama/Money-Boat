@@ -91,10 +91,8 @@ export const Register = () => {
         }catch(error){
             if(error.response) {
                 setErrors({
-                    email:error.response.data.message || '',
-                    username:error.response.data.message || '',
-                    password:error.response.data.message || '',
-                    confirmPassword:error.response.data.message || '',
+                    email:error.response.data.errors.email || '',
+                    username:error.response.data.errors.username || '',
                 });
             }
             else{
