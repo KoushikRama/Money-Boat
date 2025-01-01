@@ -4,14 +4,28 @@ const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const { Pool } = require('pg');
 const bcrypt = require('bcrypt');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 dotenv.config();
 
 const app = express();
-
+app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(cors());
-
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials:true,
+}));
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'secret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        secure: false,
+        maxAge: 360000,
+    }
+}));
 const PORT = process.env.PORT;
 
 //connection setup
@@ -104,10 +118,23 @@ app.post('/login',async(req,res)=>{
     }
 })
 
-
-app.get('/',(req,res)=>{
-    res.send('Welcome to MoneyBoat backend <h1>Hello</h1>');
+app.get('/profile',(req,res)=>{
+    if(req.session.user){
+        res.status(200).json({user: req.session.user});
+    }else{
+        res.status(401).json({message: 'Unauthorized'})
+    }
 })
+
+app.post('/logout',(req,res)=>{
+    req.session.destroy((err)=>{
+        if(err){
+            return res.status(500).json({message: 'Erros logging out'})
+        }
+        res.clearCookie('connect.sid');
+        res.status(200).json({message: 'Logged out Succesfully'});
+    });
+});
 
 app.listen(PORT , () => {
     console.log(`Server is running on port ${PORT}`);
