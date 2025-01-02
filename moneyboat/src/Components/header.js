@@ -1,4 +1,4 @@
-import React, { useEffect, useState ,useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import './header.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -9,8 +9,8 @@ const usericon = '/UserIcon.png'
 export const Header = () => {
   const [isDropDownOpened, setIsDropDownOpened] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState(null);
-  const [isCheckingLogin, setIsCheckingLogin] = useState(true); // Added to track login status check
+
+  const [isCheckingLogin, setIsCheckingLogin] = useState(false); // Added to track login status check
 
   const navigate = useNavigate();
 
@@ -28,36 +28,37 @@ export const Header = () => {
 
           // Check if the user is active
           if (response.data.user && response.data.user.is_active) {
-            setUser(response.data.user); // Set user data
             setIsLoggedIn(true); // Set logged-in state after successful validation
+            setIsCheckingLogin(true);
             console.log("User profile fetched:", response.data.user);
-            navigate('/home'); // Navigate to home
           } else {
             setIsLoggedIn(false); // Set logged out if user is not active
-            setUser(null); // Clear user data
           }
         } catch (error) {
           console.error("Error fetching profile:", error);
           localStorage.removeItem('token'); // Remove invalid token
           setIsLoggedIn(false); // Mark as not logged in
-          setUser(null); // Clear user data
         }
       } else {
         setIsLoggedIn(false); // No token, mark as not logged in
-        setUser(null); // Clear user data
+        setIsCheckingLogin(false); // Finished checking login status
       }
-      setIsCheckingLogin(false); // Finished checking login status
+      
     };
 
     checkLogin(); // Call the checkLogin function when the component mounts
-  }, [navigate]); // Dependencies: Only run when the component mounts or navigate changes
+  },[isLoggedIn]); // Dependencies: Only run when the component mounts or navigate changes
 
-  // Second useEffect: Log the state change after login check is done
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    if (!isCheckingLogin) {
+    if (isCheckingLogin===false) {
       console.log('isLoggedIn state changed:', isLoggedIn);
+      navigate('/login'); // Navigate to login
+    }else{
+      console.log('isLoggedIn state changed:', isLoggedIn);
+      navigate('/home'); // Navigate to home
     }
-  }, [isLoggedIn, isCheckingLogin]);
+  },[isCheckingLogin]); // Explicitly exclude `navigate`
 
   const logout = async () => {
     const token = localStorage.getItem('token'); // Get the token from localStorage
@@ -71,7 +72,6 @@ export const Header = () => {
         });
         localStorage.removeItem('token'); // Remove token from localStorage
         setIsLoggedIn(false);
-        setUser(null);
         navigate('/login'); // Redirect to login page
       } catch (error) {
         console.error('Error logging out:', error);
@@ -105,8 +105,9 @@ export const Header = () => {
       <img src={logo} id="MoneyBoatLogo" alt="Logo" />
       <ul>
         <li><Link to="/home">Home</Link></li>
-        <li>Dashboard</li>
-        {isLoggedIn ? (
+        <li><Link to="/dashboard">Dashboard</Link></li>
+      </ul>
+      {isLoggedIn && 
           // Show user icon and dropdown when logged in
           <div id="usericon-container">
             <img
@@ -122,11 +123,7 @@ export const Header = () => {
               </div>
             )}
           </div>
-        ) : (
-          // Show login link when not logged in
-          <li><Link to="/login">Login</Link></li>
-        )}
-      </ul>
+        }
     </nav>
   );
 };
