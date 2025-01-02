@@ -7,12 +7,13 @@ import { useNavigate } from "react-router-dom";
 const line = './LoginLine.png'
 const boat = './boat_inclined.png'
 
+
 export const Login = () => {
 
     const [username,setUsername]=useState('');
     const [password,setPassword]=useState('');
     const [checkTicked,setCheckTicked]=useState('');
-    const [isLoggingin, setIsLoggingin] = useState('');
+    const [isLoggingin, setIsLoggingin] = useState(false);
 
     const [errors,setErrors]=useState({
         username:"",
@@ -50,9 +51,13 @@ export const Login = () => {
             const response = await axios.post('http://localhost:5000/login', {
                 username,
                 password,
-            });
+            }, { withCredentials : true });
+
+            localStorage.setItem('token', response.data.token);
+            console.log(localStorage.getItem('token'));
             alert(response.data.message);
-            navigate('/home');
+            console.log('navigating to home');
+            window.location.reload();
         } catch (error) {
             // Catch block to handle errors
             if (error.response) {
@@ -72,6 +77,7 @@ export const Login = () => {
             setIsLoggingin(false);
         }
     };
+    
 
     return (
         <div class='Login-card'>
@@ -102,7 +108,7 @@ export const Login = () => {
                     {errors.password && <span className="errors">{errors.password}</span>}
                     <div class="loggedin">
                         <input type="checkbox" />
-                        <div id="stay">Stay logged in</div>
+                        <div id="stay">Remember me</div>
                     </div>    
                     <button class="Loginbutton" disabled={isLoggingin}>
                     {isLoggingin? 'Loggin in...' : 'LOGIN'}</button>

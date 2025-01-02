@@ -30,6 +30,9 @@
 }
 .navbar ul li{
     padding: 6vh 2.5vw 0 2.5vw;
+    color: whitesmoke;
+    font-size: 18px;
+    font-weight: 600;
 }
 .navbar ul li a{
     text-decoration: none;
