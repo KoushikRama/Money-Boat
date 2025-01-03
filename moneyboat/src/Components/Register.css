@@ -1,10 +1,12 @@
 .Register-card{
-    margin: 23vh 5vw 17vh 5vw;
+    margin: 23vh 5vw 14.5vh 5vw;
     height:60%;
     background-color: white;
     border-radius: 20px;
     display: flex;
     flex-direction: row;
+    z-index: index 0;;
+    position: relative;
 
 }
 .Register-space{

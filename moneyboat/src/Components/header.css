@@ -1,16 +1,19 @@
 .navbar{
     flex-direction: row;
     display: flex;
-    height:11vh;
+    height:12vh;
     width:100vw;   
     flex-wrap: wrap;
-    background-color: #3C1AFF;
+    background-color: #1B2BFF;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 .spot{
     position:fixed;
     top:0;
     right:0;
     left:0;
+    
 }
 #MoneyBoatLogo{
     height: 9vh;
@@ -25,7 +28,7 @@
     display: flex;
     flex-direction: row;
     list-style-type: none;
-    margin: 1.5vh 45vw 0 0;
+    margin: 1.5vh 28.7vw 0 0;
     font-weight: 500;
 }
 .navbar ul li{
@@ -42,10 +45,10 @@
     font-weight: 600;
 }
 #usericon{
-    height: 7.5vh;
-    width: 7.5vh;
+    height: 6.5vh;
+    width: 6.5vh;
     display: flex;
-    padding: 3vh 4.5vw 0 8.25vw
+    padding: 4vh 4.5vw 1vh 8.25vw
 }
 .dropmenu{
     flex-direction: column;
@@ -62,7 +65,7 @@
 
 }
 .dropitem{
-    background-color:#3C1AFF;
+    background-color:#1B2BFF;
     border-radius: 15px;
     height: 4vh;
     color: white;

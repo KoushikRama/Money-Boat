@@ -106,6 +106,8 @@ export const Header = () => {
       <ul>
         <li><Link to="/home">Home</Link></li>
         <li><Link to="/dashboard">Dashboard</Link></li>
+        <li><Link to="/dashboard">Expenses</Link></li>
+        <li><Link to="/dashboard">Reports</Link></li>
       </ul>
       {isLoggedIn && 
           // Show user icon and dropdown when logged in
