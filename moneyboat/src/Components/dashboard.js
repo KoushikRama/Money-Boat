@@ -1,7 +1,7 @@
 import React from "react";
 import './dashboard.css';
 
-const lifebuoy = '/lifebuoy.png';
+const lifebuoy = '/life.png';
     
 export const Dashboard =  () => {
 
@@ -14,13 +14,12 @@ export const Dashboard =  () => {
     return(
         <div className='dash'>
             <div className="greet">
-                Ahoy , Username! Ready to sail towards your financial goal
+                Ahoy, Captain Username! Ready to sail towards your financial goal
             </div>
             <div className='Stats-pie-Tab'>
                 <div className='Stats'>
                     <p>Lets check your Stats</p>
-                    <div className="Income" style={{ backgroundImage:{lifebuoy}}}>
-                        <img src = {lifebuoy}/>
+                    <div className="Income">
                         <p>Income</p>
                         <p>$5000</p>
                     </div>
@@ -29,7 +28,7 @@ export const Dashboard =  () => {
                         <p>$4000</p>
                     </div>
                     <div className="Expenditure">
-                        <p>Expenditure</p>
+                        <p>Expenses</p>
                         <p>$3000</p>
                     </div>
                 </div>
