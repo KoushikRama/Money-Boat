@@ -21,6 +21,16 @@
       "src": "Voyage.png",
       "type": "image/png",
       "sizes": "512x512"
+    },
+    {
+      "src": "UserIcon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "life.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
   "start_url": ".",

@@ -1,10 +1,12 @@
 .Register-card{
-    margin: 23vh 5vw 17vh 5vw;
+    margin: 23vh 5vw 14.5vh 5vw;
     height:60%;
     background-color: white;
     border-radius: 20px;
     display: flex;
     flex-direction: row;
+    z-index: index 0;;
+    position: relative;
 
 }
 .Register-space{
@@ -35,7 +37,7 @@ input[type="checkbox"] {
     width: 25px;  /* Increase width */
     height: 25px; /* Increase height */
     margin-top: 10px;
-    border-color: #0E00FF;
+    border-color: #1B2BFF;
 }
 #Priv{
     padding-left: 10px;
@@ -49,7 +51,7 @@ input[type="checkbox"] {
     padding: 5px;
     margin: 10px 0px 15px 5px;
     border-radius: 10px;
-    background-color: #0E00FF;
+    background-color: #1B2BFF;
     color: #FBFBFB;
     font-weight: 600;
     font-size:18px;

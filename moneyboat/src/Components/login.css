@@ -51,21 +51,21 @@ input[type="checkbox"] {
     width: 25px;  /* Increase width */
     height: 25px; /* Increase height */
     margin-top: 10px;
-    border-color: #0E00FF;
+    border-color: #1B2BFF;
 }
 #stay{
     padding-left: 10px;
     margin-top: 10px;
-    color:#0E00FF;
+    color:#1B2BFF;
     font-family: 'Quicksand';
 }
 .Loginbutton{
     width: 26vw;
     height: 43px;
     padding: 5px;
-    margin: 10px 0px 0px 15px;
+    margin: 10px 0px 0px 5px;
     border-radius: 10px;
-    background-color: #0E00FF;
+    background-color: #1B2BFF;
     color: #FBFBFB;
     font-weight: 600;
     font-size:18px;
@@ -75,7 +75,7 @@ input[type="checkbox"] {
     max-width: max-content;
 }
 a {
-    color:#0E00FF;
+    color:#1B2BFF;
     font-weight: 400;
     font-family: 'Quicksand';
     text-decoration: none;

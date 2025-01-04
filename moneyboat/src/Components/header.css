@@ -1,17 +1,19 @@
 .navbar{
     flex-direction: row;
     display: flex;
-    height:11vh;
+    height:12vh;
     width:100vw;   
     flex-wrap: wrap;
-    background-color: #3C1AFF;
+    background-color: #1B2BFF;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 .spot{
     position:fixed;
     top:0;
     right:0;
     left:0;
-    overflow-y: hidden;
+    
 }
 #MoneyBoatLogo{
     height: 9vh;
@@ -26,11 +28,14 @@
     display: flex;
     flex-direction: row;
     list-style-type: none;
-    margin: 1.5vh 0 0 0;
+    margin: 1.5vh 28.7vw 0 0;
     font-weight: 500;
 }
 .navbar ul li{
     padding: 6vh 2.5vw 0 2.5vw;
+    color: whitesmoke;
+    font-size: 18px;
+    font-weight: 600;
 }
 .navbar ul li a{
     text-decoration: none;
@@ -39,8 +44,35 @@
     font-size: 18px;
     font-weight: 600;
 }
+#usericon{
+    height: 6.5vh;
+    width: 6.5vh;
+    display: flex;
+    padding: 4vh 4.5vw 1vh 8.25vw
+}
+.dropmenu{
+    flex-direction: column;
+    display: flex;
+    height: fit-content;
+    width: 12vw;
+    flex-wrap: wrap;
+    background-color: whitesmoke;
+    margin: 3vh 0 0 0;
+    border-radius: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 5.3);
+    gap: 0.5vh;
+    padding: 1vh 0.5vw 1vh 0.5vw;
 
+}
+.dropitem{
+    background-color:#1B2BFF;
+    border-radius: 15px;
+    height: 4vh;
+    color: white;
+    font-size:15px;
+    font-family: 'Poppins';
 
+}
 @media (max-width: 1100px) {
     .navbar ul {
         margin-top: 100px;

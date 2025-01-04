@@ -5,6 +5,7 @@ import { Login } from './Components/login.js';
 import { Register } from './Components/Register.js';
 import { Home } from './Components/home.js'
 import './App.css';
+import { Dashboard } from './Components/dashboard.js';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard/>}/>
           <Route path="/register" element={<Register />} />
         </Routes>
       </div>
