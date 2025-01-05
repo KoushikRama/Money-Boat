@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const line = './LoginLine.png'
 const boat = './boat_inclined.png'
-
+const center = './CenterIcon.png';
 
 export const Login = () => {
 
@@ -81,42 +81,45 @@ export const Login = () => {
 
     return (
         <div class='Login-card'>
-            <div class='Captions'>
-                <div class="Welcome">Welcome Back!</div>
-                <div class="Tagline">Continue Tracking your Boats</div>
-                <img src={line} id='underline'/>
-            </div>            
-            <div class='login-space'> 
-                <form onSubmit={handleSubmit}>                    
-                    <input
-                        type="username"
-                        id="Username"
-                        name="Username"
-                        placeholder="Username"
-                        value={username}
-                        onChange={(e)=>setUsername(e.target.value)}
-                        />
-                    {errors.username && <span className="errors">{errors.username}</span>}
-                    <input
-                        type="password"
-                        id="Password"
-                        name="Password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e)=>setPassword(e.target.value)}
-                        />
-                    {errors.password && <span className="errors">{errors.password}</span>}
-                    <div class="loggedin">
-                        <input type="checkbox" />
-                        <div id="stay">Remember me</div>
-                    </div>    
-                    <button class="Loginbutton" disabled={isLoggingin}>
-                    {isLoggingin? 'Loggin in...' : 'LOGIN'}</button>
-                </form>  
-                <div class="ForgotPassword"><a href="">Forgot Password?</a></div>
-                <div id='dont_have'><p>Don't have an Account?< Link to='/register'>Register for Free</Link> </p></div>
+            <img src={center} className="center"/>
+            <div className="main-space">
+                <div class='Captions'>
+                    <div class="Welcome">Welcome Back!</div>
+                    <div class="Tagline">Continue Tracking your Boats</div>
+                    <img src={line} id='underline'/>
+                </div>            
+                <div class='login-space'> 
+                    <form onSubmit={handleSubmit}>                    
+                        <input
+                            type="username"
+                            id="Username"
+                            name="Username"
+                            placeholder="Username"
+                            value={username}
+                            onChange={(e)=>setUsername(e.target.value)}
+                            />
+                        {errors.username && <span className="errors">{errors.username}</span>}
+                        <input
+                            type="password"
+                            id="Password"
+                            name="Password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e)=>setPassword(e.target.value)}
+                            />
+                        {errors.password && <span className="errors">{errors.password}</span>}
+                        <div class="loggedin">
+                            <input type="checkbox" />
+                            <div id="stay">Remember me</div>
+                        </div>    
+                        <button class="Loginbutton" disabled={isLoggingin}>
+                        {isLoggingin? 'Loggin in...' : 'LOGIN'}</button>
+                    </form>  
+                    <div class="ForgotPassword"><a href="">Forgot Password?</a></div>
+                    <div id='dont_have'><p>Don't have an Account?< Link to='/register'> Register for Free</Link> </p></div>
+                </div>
+                <img src={boat} id='boat'/>
             </div>
-            <img src={boat} id='boat'/>
         </div> 
             );
 }

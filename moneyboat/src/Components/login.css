@@ -1,10 +1,29 @@
 .Login-card{
-    margin: 23vh 5vw 17vh 5vw;
-    height:60vh;
+    margin: 21vh 5vw 14vh 5vw;
+    height:65vh;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 10px;
     display: flex;
+    flex-direction: column;
+    z-index: 0;
+    position: relative;
+}
+.center{
+    width:10vw;
+    height:7vw;
+    align-content: center;
+    padding-left: 40vw;   
+    transform: translateY(-55%);
+    z-index: 1;
+}
+.main-space{
+    display:flex;
     flex-direction: row;
+    transform: translateY(-20%);
+    position: relative;
+    background-color: white;
+    border-radius:10px;
+    z-index:0;
 }
 .Welcome{
     font-size: 50px;
@@ -26,7 +45,7 @@
     padding-top: 30vh;
 }
 .login-space{
-    padding: 10vh 6.25vw 4.75vh 6.25vw;
+    padding: 15vh 6.25vw 4.75vh 6.25vw;
     width:25vw;
 }
 #Username , #Password{
@@ -51,12 +70,12 @@ input[type="checkbox"] {
     width: 25px;  /* Increase width */
     height: 25px; /* Increase height */
     margin-top: 10px;
-    border-color: #1B2BFF;
+    border-color: #1b65bf;
 }
 #stay{
     padding-left: 10px;
     margin-top: 10px;
-    color:#1B2BFF;
+    color:#1b65bf;
     font-family: 'Quicksand';
 }
 .Loginbutton{
@@ -65,7 +84,7 @@ input[type="checkbox"] {
     padding: 5px;
     margin: 10px 0px 0px 5px;
     border-radius: 10px;
-    background-color: #1B2BFF;
+    background-color: #1b65bf;
     color: #FBFBFB;
     font-weight: 600;
     font-size:18px;
@@ -73,16 +92,20 @@ input[type="checkbox"] {
 }
 .ForgotPassword{
     max-width: max-content;
+    color: #004599;
+    padding-top: 1vh;
+
 }
 a {
-    color:#1B2BFF;
-    font-weight: 400;
+    color:#004599;
+    font-weight: 1000;
     font-family: 'Quicksand';
     text-decoration: none;
 }
 #dont_have{
     margin-top: 15px;
     max-width: max-content;
+    color: #004599;
 }
 .errors{
     color: red;

@@ -36,7 +36,7 @@ pool.connect().then(client => {
 });
 
 // Secret key for JWT (secure it in production)
-const JWT_SECRET = process.env.JWT_SECRET || 'your_secret_key';
+const JWT_SECRET = process.env.JWT_SECRET || 'secret_key';
 
 // Register Route
 app.post('/register', async (req, res) => {
