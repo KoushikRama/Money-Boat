@@ -1,7 +1,8 @@
-.bank{
+.bank-account{
     background-color: white;
     height:90vh;
-    width:100vw;
-    padding-top: 10vh;
+    width:83.5vw;
+    margin-top: 10vh;
+    margin-left: 16.5vw;
 
 }
