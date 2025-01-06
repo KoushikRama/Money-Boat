@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './header.css';
+import { Sidebar } from './sidebar.js';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -7,12 +8,14 @@ const logo = '/MoneyBoatLogo.png';
 const usericon = '/UserIcon.png'
 
 export const Header = () => {
-  const [isDropDownOpened, setIsDropDownOpened] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const [isCheckingLogin, setIsCheckingLogin] = useState(false); // Added to track login status check
+  const [isSideBarOpen, setIsSideBarOpen] = useState(false);
 
   const navigate = useNavigate();
+  const handleToggle = () => {
+    setIsSideBarOpen(!isSideBarOpen);
+  };
 
   useEffect(() => {
     const checkLogin = async () => {
@@ -82,50 +85,25 @@ export const Header = () => {
     }
   };
 
-  const handleToggle = () => {
-    setIsDropDownOpened(!isDropDownOpened);
-  };
-
-  // Handle click outside to close the dropdown
-  const isClickedOutside = (event) => {
-    if (!event.target.closest('#usericon') && !event.target.closest('.dropmenu')) {
-      setIsDropDownOpened(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('click', isClickedOutside);
-    return () => {
-      document.removeEventListener('click', isClickedOutside);
-    };
-  }, []);
-
   return (
     <nav className="navbar spot">
-      <img src={logo} id="MoneyBoatLogo" alt="Logo" />
-      <ul>
-        <li><Link to="/home">Home</Link></li>
-        <li><Link to="/dashboard">Dashboard</Link></li>
-        <li><Link to="/dashboard">Expenses</Link></li>
-        <li><Link to="/dashboard">Reports</Link></li>
-      </ul>
-      {isLoggedIn && 
-          // Show user icon and dropdown when logged in
-          <div id="usericon-container">
+      {isLoggedIn ? (<div id="usericon-container">
             <img
               src={usericon}
               alt="profile_icon"
               id="usericon"
               onClick={handleToggle}
             />
-            {isDropDownOpened && (
-              <div className='dropmenu' onClick={(e) => e.stopPropagation()}>
-                <button className='dropitem'>Settings</button>
-                <button className='dropitem' onClick={logout}>Logout</button>
-              </div>
-            )}
-          </div>
-        }
+            <Sidebar isOpen={isSideBarOpen} isClose={handleToggle} logout={logout}/>
+          </div>) :
+      (<img src={logo} id="MoneyBoatLogo" alt="Logo" />)}
+      <ul>
+        <li><Link to="/home">Home</Link></li>
+        <li><Link to="/dashboard">Dashboard</Link></li>
+        <li><Link to="/transactions">Transactions</Link></li>
+        <li><Link to="/reports">Reports</Link></li>
+      </ul>
+
     </nav>
   );
 };

@@ -1,0 +1,69 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -16.5vw;
+    width: 16.5vw;
+    height: 100%;
+    background-color: whitesmoke;
+    color: #f5f5f5;
+    transition: left 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    z-index: 3;
+    /* box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); */
+    border-right: 1px solid black;
+  }
+
+.sidebar.open{
+    left:0;
+  }
+
+.top{
+    display:flex;
+    flex-direction: row;
+}
+
+  /* Sidebar.css */
+.sidebar .sidebar-list {
+    list-style: none; /* Prevent bullets */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+
+  }
+  
+  .sidebar .sidebar-list li {
+    padding: 2vh 7.5vw 2vh 2vw;
+    color: #1b65bf;
+    font-size: 15px;
+    font-family: 'Poppins';
+    cursor: pointer;
+  }
+
+  .sidebar .sidebar-list li a {
+    padding: 2vh 0vw 2vh 0vw;
+    color: #1b65bf;
+    font-size: 15px;
+    font-family: 'Poppins';
+    cursor: pointer;
+  }
+  
+  .sidebar .sidebar-list li:hover {
+    background-color: #1b65bf; /* Highlight on hover */
+    color: white;
+  }
+  .sidebar .sidebar-list li a:hover {
+    background-color: #1b65bf; /* Highlight on hover */
+    color: white;
+  }
+  /* Optional: Specific styling for the close button */
+  .sidebar .close-btn {
+    background: none;
+    border: none;
+    color: black;
+    font-size: 30px;
+    padding: 0 1vw;
+    cursor: pointer;
+  }
+  

@@ -1,7 +1,7 @@
 .navbar{
     flex-direction: row;
     display: flex;
-    height:12vh;
+    height:10vh;
     width:100vw;   
     flex-wrap: wrap;
     background: linear-gradient(to bottom, #5aa4ff, #4d9dff);
@@ -20,27 +20,26 @@
     width: 10vw;
     margin: 0 0 0 5vw;
     padding : 2vh 0 0 0;
+    z-index:1001;
 }
 
 .navbar ul{
     display: flex;
     flex-direction: row;
     list-style-type: none;
-    margin: 0vh 2.5vw 3vh 40.3vw;
-    font-weight: 500;
+    margin: 0vh 4vw 3vh 50.5vw;
+    position: fixed;
 }
 .navbar ul li{
     padding: 3vh 2vw 2vh 2vw;
     color: whitesmoke;
-    font-size: 22px;
-    font-weight: 600;
 }
 .navbar ul li a{
     text-decoration: none;
     color: white;
     font-family: 'Poppins';
     font-size: 22px;
-    font-weight: 600;
+    font-weight: 400;
 }
 .navbar ul li a:active{
     transform: scale(1.25);
@@ -50,9 +49,9 @@
     height: 6.5vh;
     width: 6.5vh;
     display: flex;
-    padding: 4vh 4.5vw 1vh 8.25vw
+    padding: 2vh 8vw 1vh 2vw;
 }
-.dropmenu{
+/* .dropmenu{
     flex-direction: column;
     display: flex;
     height: fit-content;
@@ -66,15 +65,15 @@
     padding: 1vh 0.5vw 1vh 0.5vw;
 
 }
-.dropitem{
+/* .dropitem{
     background-color:#0059FF;
     border-radius: 15px;
     height: 4vh;
     color: white;
     font-size:15px;
-    font-family: 'Poppins';
+    font-family: 'Poppins'; 
 
-}
+} */
 @media (max-width: 1100px) {
     .navbar ul {
         margin-top: 100px;
