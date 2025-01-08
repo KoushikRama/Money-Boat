@@ -7,10 +7,8 @@ import axios from 'axios';
 const logo = '/MoneyBoatLogo.png';
 const usericon = '/UserIcon.png'
 
-export const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+export const Header = ({isLoggedIn,setIsLoggedIn,isSideBarOpen,setIsSideBarOpen}) => {
   const [isCheckingLogin, setIsCheckingLogin] = useState(false); // Added to track login status check
-  const [isSideBarOpen, setIsSideBarOpen] = useState(false);
 
   const navigate = useNavigate();
   const handleToggle = () => {
@@ -74,12 +72,14 @@ export const Header = () => {
           }
         });
         localStorage.removeItem('token'); // Remove token from localStorage
+        setIsSideBarOpen(false);
         setIsLoggedIn(false);
         navigate('/login'); // Redirect to login page
       } catch (error) {
         console.error('Error logging out:', error);
       }
     } else {
+      setIsSideBarOpen(false);
       setIsLoggedIn(false);
       navigate('/login');
     }

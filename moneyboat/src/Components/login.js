@@ -8,8 +8,8 @@ const line = './LoginLine.png'
 const boat = './boat_inclined.png'
 const center = './CenterIcon.png';
 
-export const Login = () => {
-
+export const Login = ({setIsAuthenticated}) => {
+    const navigate = useNavigate();
     const [username,setUsername]=useState('');
     const [password,setPassword]=useState('');
     const [checkTicked,setCheckTicked]=useState('');
@@ -20,8 +20,6 @@ export const Login = () => {
         password:"",
         checkTicked:"",
     })
-
-    const navigate = useNavigate();
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
@@ -54,10 +52,14 @@ export const Login = () => {
             }, { withCredentials : true });
 
             localStorage.setItem('token', response.data.token);
-            console.log(localStorage.getItem('token'));
             alert(response.data.message);
-            console.log('navigating to home');
-            window.location.reload();
+            navigate('/home');
+            setIsAuthenticated(true);
+            //window.location.reload();
+            
+            console.log(localStorage.getItem('token'));
+            
+            
         } catch (error) {
             // Catch block to handle errors
             if (error.response) {
@@ -109,14 +111,14 @@ export const Login = () => {
                             />
                         {errors.password && <span className="errors">{errors.password}</span>}
                         <div class="loggedin">
-                            <input type="checkbox" />
+                            <input type="checkbox" checked={checkTicked} onChange={(e)=>setCheckTicked(e.target.checked)}/>
                             <div id="stay">Remember me</div>
                         </div>    
                         <button class="Loginbutton" disabled={isLoggingin}>
                         {isLoggingin? 'Loggin in...' : 'LOGIN'}</button>
                     </form>  
                     <div class="ForgotPassword"><a href="">Forgot Password?</a></div>
-                    <div id='dont_have'><p>Don't have an Account?< Link to='/register'> Register for Free</Link> </p></div>
+                    <div id='dont_have'><p>Don't have an Account?<Link to='/register'> Register for Free</Link> </p></div>
                 </div>
                 <img src={boat} id='boat'/>
             </div>

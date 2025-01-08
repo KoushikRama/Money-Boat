@@ -1,7 +1,7 @@
 .navbar{
     flex-direction: row;
     display: flex;
-    height:10vh;
+    height:9vh;
     width:100vw;   
     flex-wrap: wrap;
     background: linear-gradient(to bottom, #5aa4ff, #4d9dff);

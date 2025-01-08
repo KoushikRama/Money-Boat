@@ -1,13 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-
 body {
-  background: linear-gradient(to bottom, #4d9dff 50%, #1755a0);/* Sets the entire screen's background color */
+  background: linear-gradient(to bottom, #4d9dff 50%, #1755a0); /* Sets the entire screen's background color */
   margin: 0; /* Removes default margin around the body */
   padding: 0; /* Removes default padding around the body */
   height: 100%; /* Ensures the background covers the full viewport height */
   max-width: 100vw; /* Ensures the background covers the full viewport width */
-   /* Prevents horizontal scrolling */
+  overflow-x: scroll; /* Prevents horizontal scrolling */
   display: block;
+  font-family: 'Poppins', sans-serif; /* Sets the font */
+}
 
+.routeSection {
+  transition: margin-left 0.1s ease, width 0.1s ease; /* Smooth transition for margin and width changes */
+  width: 100vw; /* Default width of the route section */
+  margin-left: 0; /* Default margin, set to 0 when sidebar is closed */
+  height:100%;
+}
+
+.routeSection.sidebar-open {
+  margin-left: 16.5vw; /* Adjusts when sidebar is open */
+  width: calc(100vw - 16.5vw); /* Shrinks when sidebar is open */
 }
