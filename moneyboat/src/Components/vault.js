@@ -269,7 +269,7 @@ export const Vault = () => {
                     </div>))}
                     </div>
                 </div> }
-                {fetchError && <span>{fetchError}</span>}
+                {fetchError && <span>{fetchError}</span> }
             </div>
         </div>
         
