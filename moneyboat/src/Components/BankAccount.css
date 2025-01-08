@@ -1,0 +1,77 @@
+.bank-account{
+    background-color: white;
+    height:auto;
+    max-width:inherit;
+    margin-top: 10vh;
+    margin-left: 0vw;
+    padding: 1vh;
+
+}
+.Hey{
+    margin: 1vh 3vw 1vh 3vw;
+    padding:1vh 5vw 1vh 5vw;
+    width:fit-content;
+    border: 5px solid #5aa4ff;
+    border-radius: 20px;
+}
+
+.addaccount-btn{
+    width: fit-content;
+    padding:2vh 2vw 2vh 2vw;
+    margin: 1vh 3vw 1vh 3vw;
+    background-color: #1b65bf;
+    border-radius: 15px;
+    font-family: 'QuickSand';
+    font-size: 20px;
+    color:white;
+}
+.addaccountform{
+    border: 5px solid #5aa4ff;
+    margin: 1vh 0 1vh 0;
+    padding: 1vh 5% 5vh 5%;
+    border-radius: 15px;
+    width:fit-content;
+    font-family:"Poppins" ;
+}
+.close-addaccount-btn{
+    width:fit-content;
+    padding-left: 105%;
+    color: black;
+    font-size: 25px;
+    font-family:"Poppins" ;
+    font-weight: 900;
+    
+}
+.addaccountform form{
+    padding: 3vh 5% 5vh 0;
+    width:fit-content;
+    height:fit-content;
+    display:flex;
+    flex-direction: column;
+}
+
+#bankname , #accno , #accountType , #balance {
+    width:25vw;
+    height:30px;
+    padding:5px;
+    margin:5px;
+    border-radius: 10px;
+    background-color:#F5F5F5;
+    color: #000000;
+    border-color: #F5F5F5;
+    font-size: 15px;
+    font-family: 'Quicksand';
+}
+
+.add-button{
+    width: 26vw;
+    height: 43px;
+    padding: 5px;
+    margin: 10px 0px 0px 5px;
+    border-radius: 10px;
+    background-color: #1b65bf;
+    color: #FBFBFB;
+    font-weight: 600;
+    font-size:18px;
+    font-family: 'Quicksand';
+}

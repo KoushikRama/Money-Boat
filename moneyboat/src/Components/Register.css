@@ -1,18 +1,36 @@
 .Register-card{
-    margin: 23vh 5vw 14.5vh 5vw;
-    height:60%;
+    margin: 21vh 5vw 14vh 5vw;
+    height:65vh;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 10px;
     display: flex;
-    flex-direction: row;
-    z-index: index 0;;
+    flex-direction: column;
+    z-index: 0;
     position: relative;
 
+}
+.center{
+    width:10vw;
+    height:7vw;
+    align-content: center;
+    padding-left: 40vw;   
+    transform: translateY(-55%);
+    z-index: 1;
+}
+.main-space{
+    display:flex;
+    flex-direction: row;
+    transform: translateY(-20%);
+    position: relative;
+    background-color: white;
+    border-radius:10px;
+    z-index:0;
 }
 .Register-space{
     padding: 10vh 6.25vw 4.75vh 6.25vw;
     width:25vw;
     order:1;
+
 }
 #email, #eUsername , #ePassword{
     width:25vw;
@@ -37,12 +55,12 @@ input[type="checkbox"] {
     width: 25px;  /* Increase width */
     height: 25px; /* Increase height */
     margin-top: 10px;
-    border-color: #1B2BFF;
+    border-color: #1b65bf;
 }
 #Priv{
     padding-left: 10px;
     margin-top: 15px;
-    color:#0E00FF;
+    color:#1b65bf;
     font-family: 'Quicksand';
 }
 .Signup{
@@ -51,7 +69,7 @@ input[type="checkbox"] {
     padding: 5px;
     margin: 10px 0px 15px 5px;
     border-radius: 10px;
-    background-color: #1B2BFF;
+    background-color: #1b65bf;
     color: #FBFBFB;
     font-weight: 600;
     font-size:18px;
@@ -62,17 +80,19 @@ input[type="checkbox"] {
     display:flex;
 }
 #cap{
-    font-size: 45px;
-    padding: 10vh 0 10vh 0vh;
+    font-size: 35px;
+    padding: 13vh 0 10vh 0vh;
     font-family: 'Poppins';
     font-weight: 600;
+    color:#001D4D;
+    width:35vw;
     order:2;
 }
 #phone_cap{
     display: none;
 }
 #voyage{
-    width:45vw;
+    width:40vw;
     order:3;
 }
 .errors{

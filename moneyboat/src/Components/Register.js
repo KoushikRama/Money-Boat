@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import { useNavigate } from "react-router-dom";
 const voyage = './Voyage.png';
+const center = './CenterIcon.png';
 
 export const Register = () => {
     // Defining the States
@@ -110,60 +111,64 @@ export const Register = () => {
     };
 
     return (
+
         <div class='Register-card'>
-            < form onSubmit = {handleSubmit} >
-            <div id='phone_cap'>You're one step away from your MoneyBoat voyage!</div>
-            <div class='Register-space'>  
-                <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e)=>setEmail(e.target.value)}
-                />
-                {errors.email && <span className="errors">{errors.email}</span>}
-                <input
-                type="Username"
-                id="eUsername"
-                name="eUsername"
-                placeholder="Username"
-                value={username}
-                onChange={(e)=>setUsername(e.target.value)}
-                />
-                {errors.username && <span className="errors">{errors.username}</span>}
-                <input
-                type="password"
-                id="ePassword"
-                name="ePassword"
-                placeholder="Password"
-                value={password}
-                onChange={(e)=>setPassword(e.target.value)}
-                />
-                {errors.password && <span className="errors">{errors.password}</span>}
-                <input
-                type="password"
-                id="ePassword"
-                name="ePassword"
-                placeholder="Confirm Password"
-                value={confirmPassword}
-                onChange={(e)=>setConfirmPassword(e.target.value)}
-                />
-                {errors.confirmPassword && <span className="errors">{errors.confirmPassword}</span>}
-                <div class="Privacy">
-                    <input type="checkbox" checked={checkPrivacy} onChange={(e)=>setCheckPrivacy(e.target.checked)}/>
-                <div id="Priv">Confirm for agreeing with Privacy Policy</div>
+            <img src={center} className="center"/>
+            <div className="main-space">
+                < form onSubmit = {handleSubmit} >
+                <div id='phone_cap'>You're one step away from your MoneyBoat voyage!</div>
+                <div class='Register-space'>  
+                    <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e)=>setEmail(e.target.value)}
+                    />
+                    {errors.email && <span className="errors">{errors.email}</span>}
+                    <input
+                    type="Username"
+                    id="eUsername"
+                    name="eUsername"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e)=>setUsername(e.target.value)}
+                    />
+                    {errors.username && <span className="errors">{errors.username}</span>}
+                    <input
+                    type="password"
+                    id="ePassword"
+                    name="ePassword"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e)=>setPassword(e.target.value)}
+                    />
+                    {errors.password && <span className="errors">{errors.password}</span>}
+                    <input
+                    type="password"
+                    id="ePassword"
+                    name="ePassword"
+                    placeholder="Confirm Password"
+                    value={confirmPassword}
+                    onChange={(e)=>setConfirmPassword(e.target.value)}
+                    />
+                    {errors.confirmPassword && <span className="errors">{errors.confirmPassword}</span>}
+                    <div class="Privacy">
+                        <input type="checkbox" checked={checkPrivacy} onChange={(e)=>setCheckPrivacy(e.target.checked)}/>
+                    <div id="Priv">Confirm for agreeing with Privacy Policy</div>
+                    </div>
+                    {errors.checkPrivacy && <span className="errors">{errors.checkPrivacy}</span>}    
+                    <button class="Signup" disabled={isSubmitting}>
+                    {isSubmitting? 'Submitting...' : 'Sign Up'}
+                    </button>            
                 </div>
-                {errors.checkPrivacy && <span className="errors">{errors.checkPrivacy}</span>}    
-                <button class="Signup" disabled={isSubmitting}>
-                {isSubmitting? 'Submitting...' : 'Sign Up'}
-                </button>            
-            </div>
-            </form>
-            <div class="design">
-                <div id='cap'>You're one step away from your <span class='.mainCap'>MoneyBoat voyage!</span></div>
-                <img src={voyage} id='voyage'/>
-            </div>
+                </form>
+                <div class="design">
+                    <div id='cap'>You're one step away from your <span class='.mainCap'>MoneyBoat voyage!</span></div>
+                    <img src={voyage} id='voyage'/>
+                </div>
+            </div>            
         </div> 
     );
 }

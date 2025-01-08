@@ -36,7 +36,7 @@ pool.connect().then(client => {
 });
 
 // Secret key for JWT (secure it in production)
-const JWT_SECRET = process.env.JWT_SECRET || 'your_secret_key';
+const JWT_SECRET = process.env.JWT_SECRET || 'secret_key';
 
 // Register Route
 app.post('/register', async (req, res) => {
@@ -98,7 +98,132 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// Protected Profile Route
+
+app.post('/addaccount', async (req, res) => {
+  const { bank_name, account_no, account_type, balance } = req.body;
+
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return res.status(401).json({ message: 'No token provided or invalid format' });
+  }
+
+  const token = authHeader.split(' ')[1];
+
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+
+    const username = decoded.username;
+    if (!username) {
+      return res.status(401).json({ message: 'Invalid token: Missing username' });
+    }
+
+    const accExists = await pool.query('SELECT * FROM bank_accounts WHERE account_no = $1', [account_no]);
+    if (accExists.rows.length > 0) {
+      return res.status(400).json({ message: 'Account already exists' });
+    }
+
+    const newAccount = await pool.query(
+      'INSERT INTO bank_accounts (username, bank_name, account_no, account_type, balance) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+      [username, bank_name, account_no, account_type, balance]
+    );
+
+    res.status(201).json({ message: 'Successfully Added', account: newAccount.rows[0] });
+
+  } catch (err) {
+    console.error('Error during account addition:', err);  // Log the actual error message
+    res.status(500).json({ message: 'Server Error', error: err.message });
+}
+});
+
+
+app.get('/fetchaccounts', async (req,res)=>{
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return res.status(401).json({ message: 'No token provided or invalid format' });
+  }
+
+  const token = authHeader.split(' ')[1];
+
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const username = decoded.username;
+    if (!username) {
+      return res.status(401).json({ message: 'Invalid token: Missing username' });
+    }
+
+    const result = await pool.query('SELECT * FROM bank_accounts WHERE username = $1', [username]);
+    if (result.rows.length === 0) {
+      return res.status(404).json({ message: "User doesn't have any accounts" });
+    } else{
+      return res.status(200).json({accounts: result.rows});
+    }
+  } catch (err) {
+    console.error('Error during fetching:', err.message);
+    res.status(500).json({ message: 'Server Connection Error' });
+  } 
+
+})
+
+app.post('/addcard', async(req,res)=>{
+  const {card_type,issuer,card_number,card_name,balance,limit,account_no,expiry_month,expiry_year,account_holder} = req.body;
+  const authHeader = req.headers.authorization;
+  if(!authHeader || !authHeader.startsWith('Bearer ')){
+    return res.status(401).json({message: 'No token provided or invalid format'});
+  }
+
+  const token = authHeader.split(' ')[1];
+
+  try{
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const username = decoded.username;
+    if(!username) {
+      return res.status(401).json({ message: 'Invalid token: Missing username' });
+    }
+
+    const cardExists = await pool.query('SELECT * FROM wallets WHERE card_number = $1', [card_number]);
+    if (cardExists.rows.length > 0) {
+      return res.status(400).json({ message: 'Card already exists' });
+    }
+
+    const newCard = await pool.query('INSERT INTO wallets ("username","card_type", "issuer", "card_number", "card_name", "balance", "limit", "account_no", "expiry_month", "expiry_year", "account_holder") VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) RETURNING *',[username,card_type,issuer,card_number,card_name,balance,limit,account_no,expiry_month,expiry_year,account_holder]);
+
+    res.status(201).json({ message: 'Successfully Added', card: newCard.rows[0] });
+
+  }catch (err) {
+    console.error('Error during card addition:', err);
+    res.status(500).json({ message: 'Server Error', error: err.message });
+  }
+  
+});
+
+app.get('/fetchcards', async (req,res)=>{
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return res.status(401).json({ message: 'No token provided or invalid format' });
+  }
+
+  const token = authHeader.split(' ')[1];
+
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const username = decoded.username;
+    if (!username) {
+      return res.status(401).json({ message: 'Invalid token: Missing username' });
+    }
+
+    const result = await pool.query('SELECT * FROM wallets WHERE username = $1', [username]);
+    if (result.rows.length === 0) {
+      return res.status(404).json({ message: "User doesn't have any cards added" });
+    } else{
+      return res.status(200).json({cards: result.rows});
+    }
+  } catch (err) {
+    console.error('Error during fetching:', err.message);
+    res.status(500).json({ message: 'Server Connection Error' });
+  } 
+
+})
+
 app.get('/profile', async (req, res) => {
   const authHeader = req.headers.authorization;
 

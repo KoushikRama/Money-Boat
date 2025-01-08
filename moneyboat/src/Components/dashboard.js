@@ -32,34 +32,36 @@ export const Dashboard =  () => {
                         <p>$3000</p>
                     </div>
                 </div>
-                <div className="pie">
-                    This is pie chart
-                </div>
-                <div className="Table">
-                    <h2>Recent Transactions</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Category</th>
-                                <th>Amount</th>
-                                <th>Note</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            { transactions.map((txn,index) =>
-                            (
-                                <tr key={index}>
-                                    <td>{txn.date}</td>
-                                    <td>{txn.category}</td>
-                                    <td>{txn.amount}</td>
-                                    <td>{txn.note}</td>
+                <div className="pie-table">
+                    <div className="pie">
+                        This is pie chart
+                    </div>
+                    <div className="Table">
+                        <h2>Recent Transactions</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Category</th>
+                                    <th>Amount</th>
+                                    <th>Note</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-
+                            </thead>
+                            <tbody>
+                                { transactions.map((txn,index) =>
+                                (
+                                    <tr key={index}>
+                                        <td>{txn.date}</td>
+                                        <td>{txn.category}</td>
+                                        <td>{txn.amount}</td>
+                                        <td>{txn.note}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+                
             </div>
         </div>
     )
