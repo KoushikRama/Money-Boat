@@ -8,7 +8,6 @@ export const Transactions = () => {
     const [Transactions, setTransactions] = useState([]);
     const [loading, setLoading] = useState(true); 
     const [fetchError, setFetchError] = useState("");
-    const navigate = useNavigate();
     const [newTransaction, setNewTransaction] = useState({
         category: "",
         transfer_type: "",
@@ -20,6 +19,48 @@ export const Transactions = () => {
         tuuid: "",
         date: "",
     });
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [dialogMessage, setDialogMessage] = useState("");
+    const [accounts, setAccounts] = useState([]);
+    const [cards, setCards] = useState([]);
+    useEffect(() => {
+        const fetchAccounts = async () => {
+            const token = localStorage.getItem('token');
+            if (token) {
+                try {
+                    const response = await axios.get('http://localhost:5000/fetchaccounts', {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    });
+                    setAccounts(response.data.accounts);
+                } catch (err) {
+                    console.error(err);
+                }
+            } 
+        };
+        fetchAccounts();
+        const fetchCards = async () => {
+            const token = localStorage.getItem('token');
+            if (token) {
+                try {
+                    const response = await axios.get('http://localhost:5000/fetchcards', {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    });
+                    setCards(response.data.cards);
+                } catch (err) {
+                    console.error(err);
+                }
+            }
+        };
+        fetchCards();
+    }, []); 
+
+    const closeDialog = () => {
+        setIsDialogOpen(false);
+    }
 
     const handleAddTransaction = () => {
         setIsAddTransaction(true);
@@ -34,6 +75,8 @@ export const Transactions = () => {
     const closeAddTransaction = (e) => {
         setIsAddTransaction(false);
     };
+
+
 
     useEffect(() => {
         const fetchTransactions = async () => {
@@ -61,7 +104,7 @@ export const Transactions = () => {
 
     const AddNewTransaction = async (e) => {
         e.preventDefault();
-
+        console.log(newTransaction);
         // Check if all fields are filled
         if (Object.values(newTransaction).some((value) => value === "")) {
             alert("Please fill in all fields.");
@@ -79,7 +122,6 @@ export const Transactions = () => {
             });
 
             if (response.data.message === "Successfully Added") {
-                alert(response.data.message);
                 setTransactions([...Transactions, newTransaction]);
                 setNewTransaction({
                     category: "",
@@ -94,34 +136,9 @@ export const Transactions = () => {
                 });
                 setIsAddTransaction(false);
             } else {
-                    const {transaction_type,transfer_type} = newTransaction;
-                    console.log(transaction_type);
-                    if(transfer_type==='self'){
-                        if(transaction_type==='bank'){
-                            if(response.data.message==='S'){
-                        
-                                alert('Sending Account is not added in accounts , click ok to redirect to accounts');
-                                
-                            } else{
-                                alert('Receiving Account is not added in accounts , click ok to redirect to accounts');
-                            }
-                        } else if(transaction_type==='bankTocard'){
-                            if(response.data.message==='S'){
-                                console.log(response.data.message);
-                                alert('Sending Account is not added in accounts , click ok to redirect to accounts');
-                            } else{
-                                console.log(response.data.message);
-                                alert('Receiving Card is not added in Vault , click ok to redirect to Vault');
-                            }
-                        } else {
-                            if(response.data.message==='S'){
-                                alert('Sending Card is not added in Vault , click ok to redirect to Vault');
-                            } else{
-                                alert('Receiving Card is not added in Vault , click ok to redirect to Vault');
-                            }
-                        }
-                    }
-                
+                setIsDialogOpen(true);
+                setDialogMessage(response.data.message);
+                console.log(response.data.message);
             }
         } catch (err) {
             console.error("Error adding transaction:", err.response?.data?.message || err.message);
@@ -186,69 +203,99 @@ export const Transactions = () => {
 
                                 {newTransaction.transaction_type === "bank" && (
                                     <>
-                                        <input
-                                            type="text"
+                                        <select
                                             name="source"
                                             id="source"
-                                            placeholder="Enter Sender bank account number"
                                             value={newTransaction.source}
                                             onChange={handleInputChange}
                                             required
-                                        />
-                                        <input
-                                            type="text"
+                                        >
+                                            <option value="">-- Select Source Account --</option>
+                                            {accounts.map((account) => (
+                                                <option key={account.account_no} value={account.account_no}>
+                                                    {account.bank_name} (****{account.account_no.slice(-4)})
+                                                </option>
+                                            ))}
+                                        </select>
+                                        <select
                                             name="destination"
                                             id="destination"
-                                            placeholder="Enter destination account number"
                                             value={newTransaction.destination}
                                             onChange={handleInputChange}
                                             required
-                                        />
+                                        >
+                                            <option value="">-- Select Destination Account --</option>
+                                            {accounts.map((account) => (
+                                                <option key={account.account_no} value={account.account_no}>
+                                                    {account.bank_name} (****{account.account_no.slice(-4)})
+                                                </option>
+                                            ))}
+                                        </select>
                                     </>
                                 )}
 
                                 {newTransaction.transaction_type === "bankTocard" && (
                                     <>
-                                        <input
-                                            type="text"
+                                        <select
                                             name="source"
                                             id="source"
-                                            placeholder="Enter Sender Account number"
                                             value={newTransaction.source}
                                             onChange={handleInputChange}
                                             required
-                                        />
-                                        <input
-                                            type="text"
+                                        >
+                                            <option value="">-- Select Sending Account --</option>
+                                            {accounts.map((account) => (
+                                                <option key={account.account_no} value={account.account_no}>
+                                                    {account.bank_name} (****{account.account_no.slice(-4)})
+                                                </option>
+                                            ))}
+                                        </select>
+                                        <select
                                             name="destination"
                                             id="destination"
-                                            placeholder="Enter destination card number"
                                             value={newTransaction.destination}
                                             onChange={handleInputChange}
                                             required
-                                        />
+                                        >
+                                            <option value="">-- Select Receiving Card --</option>
+                                            {cards.map((card) => (
+                                                <option key={card.card_number} value={card.card_number}>
+                                                    {card.card_name} (****{card.card_number.slice(-4)})
+                                                </option>
+                                            ))}
+                                        </select>
                                     </>
                                 )}
                                 {newTransaction.transaction_type === "cardReload" && (
                                     <>
-                                        <input
-                                            type="text"
+                                        <select
                                             name="source"
                                             id="source"
-                                            placeholder="Enter Credit/Debit card number"
                                             value={newTransaction.source}
                                             onChange={handleInputChange}
                                             required
-                                        />
-                                        <input
-                                            type="text"
+                                        >
+                                            <option value="">-- Select Sending Card --</option>
+                                            {cards.filter(card => card.card_type !== 'Prepaid').map((card) => (
+                                                <option key={card.card_number} value={card.card_number}>
+                                                    {card.card_name} (****{card.card_number.slice(-4)})
+                                                </option>
+                                            ))}
+                                        </select>
+                                        <select
                                             name="destination"
                                             id="destination"
-                                            placeholder="Enter destination card number"
                                             value={newTransaction.destination}
                                             onChange={handleInputChange}
                                             required
-                                        />
+                                        >
+                                            <option value="">-- Select Receiving Card --</option>
+                                            {cards.filter(card => card.card_type === 'Prepaid').map((card) => (
+                                                <option key={card.card_number} value={card.card_number}>
+                                                    {card.card_name} (****{card.card_number.slice(-4)})
+                                                </option>
+                                            ))}
+                                        </select>
                                     </>
                                 )}
                             </>
@@ -263,26 +310,32 @@ export const Transactions = () => {
                                     onChange={handleInputChange}
                                     required
                                 >
+                                    <option value="" disabled>Select Transaction Type</option> 
                                     <option value="bank">Bank Transfer</option>
                                 </select>
                                 <input
                                     type="text"
                                     name="source"
-                                    id="source"
+                                    id="sourcein"
                                     placeholder="Enter Sender Name"
                                     value={newTransaction.source}
                                     onChange={handleInputChange}
                                     required
                                 />
-                                <input
-                                    type="text"
+                                <select
                                     name="destination"
                                     id="destination"
-                                    placeholder="Enter your Receiving account number"
                                     value={newTransaction.destination}
                                     onChange={handleInputChange}
                                     required
-                                />
+                                >
+                                    <option value="">-- Select Destination Account --</option>
+                                    {accounts.map((account) => (
+                                        <option key={account.account_no} value={account.account_no}>
+                                            {account.bank_name} (****{account.account_no.slice(-4)})
+                                        </option>
+                                    ))}
+                                </select>
                             </>
                         )}
 
@@ -302,19 +355,24 @@ export const Transactions = () => {
 
                                 {newTransaction.transaction_type === "bank" && (
                                     <>
-                                        <input
-                                            type="text"
+                                        <select
                                             name="source"
                                             id="source"
-                                            placeholder="Enter Sending bank account number"
                                             value={newTransaction.source}
                                             onChange={handleInputChange}
                                             required
-                                        />
+                                        >
+                                            <option value="">-- Select Source Account --</option>
+                                            {accounts.map((account) => (
+                                                <option key={account.account_no} value={account.account_no}>
+                                                    {account.bank_name} (****{account.account_no.slice(-4)})
+                                                </option>
+                                            ))}
+                                        </select>
                                         <input
                                             type="text"
                                             name="destination"
-                                            id="destination"
+                                            id="destinationin"
                                             placeholder="Enter Recipient Name"
                                             value={newTransaction.destination}
                                             onChange={handleInputChange}
@@ -325,19 +383,24 @@ export const Transactions = () => {
 
                                 {newTransaction.transaction_type === "cardPay" && (
                                     <>
-                                        <input
-                                            type="text"
+                                        <select
                                             name="source"
                                             id="source"
-                                            placeholder="Enter Card Number"
                                             value={newTransaction.source}
                                             onChange={handleInputChange}
                                             required
-                                        />
+                                        >
+                                            <option value="">-- Select Sending Card --</option>
+                                            {cards.map((card) => (
+                                                <option key={card.card_number} value={card.card_number}>
+                                                    {card.card_name} (****{card.card_number.slice(-4)})
+                                                </option>
+                                            ))}
+                                        </select>
                                         <input
                                             type="text"
                                             name="destination"
-                                            id="destination"
+                                            id="destinationin"
                                             placeholder="Enter Recipient Name"
                                             value={newTransaction.destination}
                                             onChange={handleInputChange}
@@ -399,24 +462,44 @@ export const Transactions = () => {
                         <table>
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>Category</th>
                                     <th>Transaction Type</th>
                                     <th>{"Sender(Name/Acc/Card no.)"}</th>
                                     <th>{"Receiver(Name/Acc/Card no.)"}</th>
                                     <th>Date of Transaction</th>
                                     <th>Amount</th>
+                                    <th>Reason</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {Array.isArray(Transactions) && Transactions.length > 0 ? (
                                     Transactions.map((trans, index) => (
                                         <tr key={trans.tuuid}>
+                                            <td>{index+1}</td>
                                             <td>{trans.category}</td>
                                             <td>{trans.transfer_type}</td>
-                                            <td>{trans.source}</td>
-                                            <td>{trans.destination}</td>
+                                            <td>
+                                                {
+                                                    accounts.find((account) => account.account_no === trans.source)
+                                                        ? `${accounts.find((account) => account.account_no === trans.source).bank_name} (****${trans.source.slice(-4)})`
+                                                        : cards.find((card) => card.card_number === trans.source)
+                                                        ? `${cards.find((card) => card.card_number === trans.source).card_name} (****${trans.source.slice(-4)})`
+                                                        : `${trans.source}`
+                                                }
+                                            </td>
+                                            <td>
+                                                {
+                                                    accounts.find((account) => account.account_no === trans.destination)
+                                                        ? `${accounts.find((account) => account.account_no === trans.destination).bank_name} (****${trans.destination.slice(-4)})`
+                                                        : cards.find((card) => card.card_number === trans.destination)
+                                                        ? `${cards.find((card) => card.card_number === trans.destination).card_name} (****${trans.destination.slice(-4)})`
+                                                        : `${trans.destination}`
+                                                }
+                                            </td>
                                             <td>{trans.date}</td>
                                             <td>$ {trans.amount_spent}</td>
+                                            <td>{trans.reason}</td>
                                         </tr>
                                     ))
                                 ) : (
@@ -430,6 +513,14 @@ export const Transactions = () => {
                 </div>
                 {fetchError && <span>{fetchError}</span> }
             </div>
+            {isDialogOpen && (
+                <div className="dialogBox">
+                    <div className="dialogContent">
+                        <p>{dialogMessage}</p>
+                        <button onClick={closeDialog}>OK</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
-};
+    }

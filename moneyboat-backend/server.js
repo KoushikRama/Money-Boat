@@ -181,7 +181,7 @@ app.post('/addcard', async(req,res)=>{
     }
 
     const accountExists = await pool.query('SELECT * FROM bank_accounts WHERE account_no = $1', [account_no]);
-    if (accountExists.rows.length === 0) {
+    if (accountExists.rows.length === 0 && card_type!=='Prepaid') {
       return res.status(201).json({ message: "Account doesn't exist , add account" });
     }
 
@@ -317,66 +317,9 @@ app.post('/addtransaction', async (req, res) => {
     // Check if the transaction already exists
     const transactionExists = await pool.query('SELECT * FROM transactions WHERE tuuid = $1', [tuuid]);
     if (transactionExists.rows.length > 0) {
-      return res.status(201).json({ message: 'Transaction already Exists' });
-    }
-
-    if(transfer_type==='self'){
-      if(transaction_type==='bank'){
-        const sourceExists = await pool.query('SELECT * FROM bank_accounts WHERE account_no=$1', [source]);
-        if (sourceExists.rows.length === 0) {
-          return res.status(201).json({ message: "S" });
-        }
-        const destinationExists = await pool.query('SELECT * FROM bank_accounts WHERE account_no=$1', [destination]);
-        if (destinationExists.rows.length === 0) {
-          return res.status(201).json({ message: "D" });
-        }
-      }
-      if(transaction_type==='bankTocard'){
-        const sourceExists = await pool.query('SELECT * FROM bank_accounts WHERE account_no=$1', [source]);
-        if (sourceExists.rows.length === 0) {
-          return res.status(201).json({ message: "S" });
-        }
-        const destinationExists = await pool.query('SELECT * FROM wallets WHERE card_number=$1', [destination]);
-        if (destinationExists.rows.length === 0) {
-          return res.status(201).json({ message: "D" });
-        }
-      }
-      if(transaction_type==='cardReload'){
-        const sourceExists = await pool.query('SELECT * FROM wallets WHERE card_number=$1', [source]);
-        if (sourceExists.rows.length === 0) {
-          return res.status(201).json({ message: "S" });
-        }
-        const destinationExists = await pool.query('SELECT * FROM wallets WHERE card_number=$1', [destination]);
-        if (destinationExists.rows.length === 0) {
-          return res.status(201).json({ message: "D" });
-        }
-      }
-    }
-
-    if (transfer_type === 'incoming') {
-      const destinationExists = await pool.query('SELECT * FROM bank_accounts WHERE account_no=$1', [destination]);
-      if (destinationExists.rows.length === 0) {
-        return res.status(201).json({ message: "D" });
-      }
-    }
-
-    if (transfer_type === 'outgoing') {
-      if(transaction_type==='bank'){
-        const sourceExists = await pool.query('SELECT * FROM bank_accounts WHERE account_no=$1', [source]);
-        if (sourceExists.rows.length === 0) {
-          return res.status(201).json({ message: "S" });
-        }
-      }
-      if(transaction_type === 'cardPay'){
-        const destinationExists = await pool.query('SELECT * FROM wallets WHERE card_number=$1', [destination]);
-        if (destinationExists.rows.length === 0) {
-          return res.status(201).json({ message: "D" });
-        }
-      }
+      return res.status(201).json({ message: 'A Transaction with same transaction ID already Exists' });
     }
     
-
-
     // Insert new transaction into the database
     const result = await pool.query(
       'INSERT INTO transactions ("tuuid", "username", "category", "transfer_type", "source", "destination", "amount_spent", "date","reason","transaction_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8,$9,$10) RETURNING *',

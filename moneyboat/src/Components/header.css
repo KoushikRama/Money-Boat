@@ -46,8 +46,8 @@
     text-decoration: underline;
 }
 #usericon{
-    height: 6.5vh;
-    width: 6.5vh;
+    height: 5.5vh;
+    width: 5.5vh;
     display: flex;
     padding: 2vh 8vw 1vh 2vw;
 }
