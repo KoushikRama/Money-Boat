@@ -1,6 +1,7 @@
 import React , {useState,useEffect} from "react";
 import './vault.css';
 import axios from "axios";
+import {useNavigate} from 'react-router-dom';
 
 export const Vault = () => {
     const [isAddCard , setISAddCard] = useState(false);
@@ -8,6 +9,7 @@ export const Vault = () => {
     const [loading, setLoading] = useState(true); 
     const [error,setError] = useState("");
     const [fetchError,setFetchError] = useState("");
+    const navigate = useNavigate();
 
     const [newCard,setNewCard] = useState({
         card_type: "",
@@ -75,8 +77,12 @@ export const Vault = () => {
                 },
                 withCredentials: true,
             });
-            if(response.data.message){
+            if(response.data.message == "Successfully Added"){
                 setCards([...cards, newCard]);
+            }
+            else{
+                alert(response.data.message);
+                navigate('/bankaccount');
             }
         } catch (err){
             console.log(err.response.data.message);

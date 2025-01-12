@@ -1,0 +1,97 @@
+.Transactions{
+    background-color: white;
+    height:auto;
+    max-width:inherit;
+    margin-top: 10vh;
+    padding:5vh 5vw 5vh 5vw;
+}
+.checkTransactions{
+    padding:1vh 5vw 1vh 5vw;
+    width:fit-content;
+    border: 5px solid #5aa4ff;
+    border-radius: 20px;
+    font-family: 'Poppins';
+    font-size: 20px;
+    font-weight: 300;
+}
+.addTransactionsForm{
+    border: 5px solid #5aa4ff;
+    margin: 1vh 0 1vh 0;
+    padding: 1vh 5% 5vh 5%;
+    border-radius: 15px;
+    width:fit-content;
+    font-family:"Poppins" ;
+}
+.close-addTransaction-btn{
+    width:fit-content;
+    padding-left: 100%;
+    color: black;
+    font-size: 25px;
+    font-family:"Poppins" ;
+    font-weight: 900;
+}
+.addTransactionsForm form{
+    padding: 3vh 5% 5vh 0;
+    width:fit-content;
+    height:fit-content;
+    display:flex;
+    flex-direction: column;
+}
+#category,
+#categories,
+#source,
+#destination,
+#date,
+#amount_spent,
+#tuuid,
+#reason{
+    width: 25vw;
+    height: 30px;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: #F5F5F5;
+    color: #000000;
+    border-color: #F5F5F5;
+    font-size: 15px;
+    font-family: 'Quicksand';
+}
+#transfer_type,
+#transaction_type
+{
+    width: 25.8vw;
+    height: 45px;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: #F5F5F5;
+    color: #000000;
+    border-color: #F5F5F5;
+    font-size: 15px;
+    font-family: 'Quicksand';
+}
+
+.Addbtn{
+    width: 25vw;
+    height: 43px;
+    padding: 5px;
+    margin: 10px 0px 0px 5px;
+    border-radius: 10px;
+    background-color: #1b65bf;
+    align-content: center;
+    text-align: center;
+    color: #FBFBFB;
+    font-weight: 600;
+    font-size:18px;
+    font-family: 'Quicksand';
+}
+.addnewtransaction{
+    width: fit-content;
+    margin:1vh 0 2vh 0;
+    padding:2vh 2vw 2vh 2vw;
+    background-color: #1b65bf;
+    border-radius: 15px;
+    font-family: 'QuickSand';
+    font-size: 20px;
+    color:white;
+}

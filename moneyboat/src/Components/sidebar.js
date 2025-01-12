@@ -18,7 +18,7 @@ export const Sidebar = ({ isOpen, isClose, logout }) => {
           <ul className="sidebar-list">
             <li><Link to="/bankaccount">Bank Accounts</Link></li>
             <li><Link to="/vault">Vault</Link></li>
-            <li>Categories</li>
+            <li><Link to="/budgets">Budgets</Link></li>
             <li>Settings</li>
             <li onClick={logout ? logout : () => console.error("Logout function is not passed correctly")}>
               Logout
