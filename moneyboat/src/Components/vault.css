@@ -1,9 +1,10 @@
 .wallet-section{
     background-color: white;
     height:auto;
-    max-width:inherit;
-    margin-top: 10vh;
-    padding:5vh 5vw 5vh 5vw;
+    min-height: 81vh;
+    max-width:auto;
+    margin-top: 9vh;
+    padding:3% 15% 3% 15%;
     
 
 }
@@ -28,17 +29,36 @@
     font-size: 20px;
     color:white;
 }
+.Card-Vaults{
+    width:auto;
+}
 .addcardform{
     border: 5px solid #5aa4ff;
+    align-items: stretch;
+    position: relative;
+    box-sizing: border-box;
     margin: 1vh 0 1vh 0;
-    padding: 1vh 5% 5vh 5%;
+    padding: 4% 5% 5vh 10%;
     border-radius: 15px;
-    width:fit-content;
+    width:auto;
     font-family:"Poppins" ;
+    display: flex;
+    flex-direction: row;
+}
+
+.super-card-space{
+    padding:0% 0% 0 0%;
+    width: 60%;
+    right:10px;
+    display:flex;
+    flex-direction: column;
+    box-sizing: border-box;
 }
 .close-addcard-btn{
     width:fit-content;
-    padding-left: 105%;
+    box-sizing: border-box;
+    margin-left:auto;
+    height:fit-content;
     color: black;
     font-size: 25px;
     font-family:"Poppins" ;
@@ -62,8 +82,8 @@
 #expiryMonth, 
 #expiryYear, 
 #accountHolder {
-    width: 25vw;
-    height: 30px;
+    width: 20vw;
+    height: 25px;
     padding: 5px;
     margin: 5px;
     border-radius: 10px;
@@ -73,13 +93,26 @@
     font-size: 15px;
     font-family: 'Quicksand';
 }
+.add-button{
+    width: 21vw;
+    height: 35px;
+    padding: 5px;
+    margin: 10px 0px 0px 5px;
+    border-radius: 10px;
+    background-color: #1b65bf;
+    color: #FBFBFB;
+    font-weight: 600;
+    font-size:18px;
+    font-family: 'Quicksand';
+}
 .vault-title{
     font-size: 30px;
     font-weight:700;
 }
 .Credit-Vault{
     padding:1vh 5vw 1vh 5vw;
-    width:80%;
+    width:auto;
+    position: relative;
     border: 5px solid #5aa4ff;
     margin-bottom: 3vh;
     border-radius: 20px;
@@ -90,10 +123,9 @@
 
 .Debit-Vault{
     padding:1vh 5vw 1vh 5vw;
-    width:fit-content;
+    width:auto;
     border: 5px solid #5aa4ff;
     margin-bottom: 3vh;
-    width:80%;
     border-radius: 20px;
     font-family: 'Poppins';
     font-size: 20px;
@@ -102,18 +134,88 @@
 
 .Prepaid-Vault{
     padding:1vh 5vw 1vh 5vw;
-    width:fit-content;
+    width:auto;
+    position: relative;
     border: 5px solid #5aa4ff;
     margin-bottom: 3vh;
     border-radius: 20px;
-    width:80%;
     font-family: 'Poppins';
     font-size: 20px;
     font-weight: 300;
 }
 
 .card{
-    padding:3vh 3vw 3vh 3vw;
+    padding:2% 2% 3% 2%;
     border: 5px solid #5aa4ff;
-    margin: 2vh 0 1vh 0;
+    margin: 1vh 0 1vh 0;
+    position:relative;
+}
+.card-space{
+    padding:10% 5% 0 0;
+}
+.card-name-template{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+}
+h3{
+    margin:0 0 1vh 0;
+}
+.card-template {
+    position: relative;
+    width: 375px;
+    height: 225px;
+    color: white; /* Ensure text is visible over the image */
+}
+
+#selectedCard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card-type, .bank-name, .card-number, .account-holder, .expiry-date {
+    position: absolute;
+    color: white;
+    padding: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Optional: Adds shadow to make text more readable */
+}
+
+.card-type {
+    top: 10px;
+    left: 10px;
+}
+
+.bank-name {
+    top: 10px;
+    right: 10px; /* Adjusted to position it on the right side */
+}
+
+.card-number {
+    top: 110px;
+    left: 65px;
+    font-size:18px;
+}
+
+.account-holder {
+    bottom: 15px;
+    left: 10px;
+    
+}
+
+.expiry-date {
+    bottom: 60px;
+    left: 190px;
+    font-size: 12px;
+}
+.card-side{
+    position: absolute;
+    right:30px;
+    top:70px;
 }

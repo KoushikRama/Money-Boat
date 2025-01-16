@@ -14,16 +14,37 @@ export const BankAccount = () => {
         balance: "",
     });
     const [loading, setLoading] = useState(true); 
-    const [error,setError] = useState("");
-    const [fetchError,setFetchError] = useState("");
-    const handleAddAccount = () => {
-        setIsAddAccount(true);
-    };
+    const [error, setError] = useState("");
+    const [fetchError, setFetchError] = useState("");
+    const [isCustom, setIsCustom] = useState(false);
+    const [bankicon , setBankIcon] = useState([]);
+
+    const predefinedBanks = ([
+        'Bank of America',
+        'Chase Bank',
+        'Wells Fargo',
+        'Citibank',
+        'HSBC',
+        'Barclays'
+    ]);
 
     const handleInputChange = (e) => {
-        e.preventDefault();
         const { name, value } = e.target;
-        setNewAccount({ ...newAccount, [name]: value });
+        setNewAccount(prevState => ({ ...prevState, [name]: value }));
+    };
+    const handleBankChange = (e) => {
+        const selectedBank = e.target.value;
+        if (selectedBank === "other") {
+            setIsCustom(true);
+            setNewAccount({ ...newAccount, bank_name: "" }); 
+        } else {
+            setIsCustom(false);
+            setNewAccount({ ...newAccount, bank_name: selectedBank });
+        }
+    };
+
+    const handleAddAccount = () => {
+        setIsAddAccount(true);
     };
 
     useEffect(() => {
@@ -39,8 +60,8 @@ export const BankAccount = () => {
                     setAccounts(response.data.accounts);
                     setLoading(false); 
                 } catch (err) {
-                    let error = err.response?.data?.message || "An error occurred while fetching accounts.";
-                    setFetchError(error);
+                    const errorMessage = err.response?.data?.message || "An error occurred while fetching accounts.";
+                    setFetchError(errorMessage);
                     setLoading(false); 
                 }
             } else {
@@ -48,11 +69,21 @@ export const BankAccount = () => {
             }
         };
         fetchAccounts();
+        const fetchbanknIcon = async () =>{
+            try {
+                const response = await axios.get('http://localhost:5000/fetchbankicons');
+                setBankIcon(response.data.icons);
+            } catch (err) {
+                const errorMessage = err.response?.data?.message || "An error occurred while fetching accounts.";
+                setFetchError(errorMessage);
+            }
+        }
+        fetchbanknIcon();
     }, []); 
 
-    // Add account handler
+
     const addAccount = async (e) => {
-        e.preventDefault(); // Prevent form submission
+        e.preventDefault();
     
         if (!newAccount.bank_name || !newAccount.account_no || !newAccount.account_type || !newAccount.balance) {
             setError("Fill all the fields");
@@ -87,7 +118,7 @@ export const BankAccount = () => {
         setIsAddAccount(false);
     };
 
-    const closeAddAccount = () =>{
+    const closeAddAccount = () => {
         setIsAddAccount(false);
     }
 
@@ -99,15 +130,34 @@ export const BankAccount = () => {
                     <div className="addaccountform">
                         <div className="close-addaccount-btn" onClick={closeAddAccount}>X</div>
                         <form>
-                            <input
-                                type="text"
-                                id="bankname"
+                            <select
+                                id="bank_name"
                                 name="bank_name"
-                                placeholder="Enter Bank Name"
-                                value={newAccount.bank_name}
-                                onChange={handleInputChange}
+                                value={isCustom ? "other" : newAccount.bank_name}
+                                onChange={handleBankChange}
                                 required
-                            />
+                            >
+                                <option value="">-- Select Bank --</option>
+                                {bankicon.map((bank, index) => (
+                                    <option key={index} value={bank.bank_name}>
+                                        {bank.bank_name}
+                                    </option>
+                                ))}
+                                <option value="other">Other (Type your own)</option>
+                            </select>
+
+                            {isCustom && (
+                                <input
+                                    type="text"
+                                    id="bankname"
+                                    name="bankname"
+                                    placeholder="Enter your bank name"
+                                    value={newAccount.bank_name}
+                                    onChange={handleInputChange}
+                                    required
+                                />
+                            )}
+
                             <input
                                 type="text"
                                 id="accno"
@@ -166,7 +216,14 @@ export const BankAccount = () => {
                                 {accounts.length > 0 ? (
                                     accounts.map((acc, index) => (
                                         <tr key={index}>
-                                            <td>{acc.bank_name}</td>
+                                            <td className="bankname-table">
+                                                 <p>{acc.bank_name}</p>{bankicon.map((icon, i) => {
+                                                    if (icon.bank_name === acc.bank_name) {
+                                                        console.log(icon.icon_url);  // Log the icon URL to ensure it's a valid data URL or Base64 string
+                                                        return <img src={icon.icon_url} alt="Bank Icon" className="bank-icon" key={i} />;
+                                                    }
+                                                    return null;
+                                                })}</td>
                                             <td>{acc.account_no}</td>
                                             <td>{acc.account_type}</td>
                                             <td>{acc.balance}</td>
@@ -177,7 +234,6 @@ export const BankAccount = () => {
                                 )}
                             </tbody>
                         </table>
-                        
                     )}
                     {fetchError && <span>{fetchError}</span>}
                 </div>

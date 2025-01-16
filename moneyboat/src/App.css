@@ -6,7 +6,7 @@ body {
   padding: 0; /* Removes default padding around the body */
   height: 100%; /* Ensures the background covers the full viewport height */
   max-width: 100vw; /* Ensures the background covers the full viewport width */
-  overflow-x: scroll; /* Prevents horizontal scrolling */
+  overflow-x:hidden; /* Prevents horizontal scrolling */
   display: block;
   font-family: 'Poppins', sans-serif; /* Sets the font */
 }
@@ -21,4 +21,5 @@ body {
 .routeSection.sidebar-open {
   margin-left: 16.5vw; /* Adjusts when sidebar is open */
   width: calc(100vw - 16.5vw); /* Shrinks when sidebar is open */
+  overflow-x: hidden;
 }

@@ -370,7 +370,37 @@ app.get('/fetchtransactions', async (req,res)=>{
 
 })
 
+app.get('/fetchbankicons', async (req,res)=>{
 
+  try {
+    const result = await pool.query('SELECT * FROM banks');
+    const bankIcons = result.rows.map((row) => ({
+      bank_name: row.bank_name,
+      icon_url: `data:image/png;base64,${row.bank_logo.toString("base64")}`,
+    }));
+
+    res.json({ icons: bankIcons });
+  } catch (err) {
+    console.error('Error during fetching:', err.message);
+    res.status(500).json({ message: 'Server Connection Error' });
+  } 
+
+})
+
+app.get('/fetchbankcards', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT bank_name, encode(card_img, \'base64\') AS card_img FROM cards');
+    const cards = result.rows.map(row => ({
+        bank_name:row.bank_name,
+        card_img: `data:image/png;base64,${row.card_img}`, 
+    }));
+    console.log(cards);
+    res.status(200).json({ cards });
+  } catch (err) {
+      console.error('Error fetching bank cards:', err.message);
+      res.status(500).json({ message: 'Error fetching bank cards' });
+  }
+});
 
 app.get('/profile', async (req, res) => {
   const authHeader = req.headers.authorization;

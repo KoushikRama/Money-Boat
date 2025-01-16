@@ -1,9 +1,11 @@
 .Budgets{
     background-color: white;
     height:auto;
+    min-height: 81vh;
     max-width:inherit;
-    margin-top: 10vh;
+    margin-top: 9vh;
     padding:5vh 5vw 5vh 5vw;
+    
 }
 .budget-cap{
     padding:1vh 5vw 1vh 5vw;
