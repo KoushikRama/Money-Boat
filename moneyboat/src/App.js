@@ -8,6 +8,8 @@ import { Home } from './Components/home.js'
 import { Dashboard } from './Components/dashboard.js';
 import { BankAccount } from './Components/BankAccount.js';
 import { Vault } from './Components/vault.js';
+import { Budgets } from './Components/budgets.js';
+import { Transactions } from './Components/transactions.js';
 
 
 function App() {
@@ -32,6 +34,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/bankaccount" element={<BankAccount />}/>
           <Route path="/vault" element={<Vault/>}/>
+          <Route path="/budgets" element={<Budgets/>}/>
+          <Route path="/transactions" element={<Transactions />}/>
         </Routes>
       </div>
     </div>  

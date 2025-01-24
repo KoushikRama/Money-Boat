@@ -26,23 +26,30 @@
   /* Sidebar.css */
 .sidebar .sidebar-list {
     list-style: none; /* Prevent bullets */
-    margin: 0;
+    margin: 3vh 0 0 0;
     padding: 0;
     display: flex;
     flex-direction: column;
 
   }
+
+  .sidebar .sidebar-list img {
+    margin-right: 10px;
+    width:20px;
+    height: 20px;
+  }
   
   .sidebar .sidebar-list li {
-    padding: 2vh 7.5vw 2vh 2vw;
+    padding: 2vh 6vw 2vh 2vw;
     color: #1b65bf;
+    display: flex;
     font-size: 15px;
     font-family: 'Poppins';
     cursor: pointer;
   }
 
   .sidebar .sidebar-list li a {
-    padding: 2vh 0vw 2vh 0vw;
+    padding: 0vh 0vw 0vh 0vw;
     color: #1b65bf;
     font-size: 15px;
     font-family: 'Poppins';
@@ -53,9 +60,12 @@
     background-color: #1b65bf; /* Highlight on hover */
     color: white;
   }
-  .sidebar .sidebar-list li a:hover {
+  .sidebar .sidebar-list li:hover a{
     background-color: #1b65bf; /* Highlight on hover */
     color: white;
+    text-decoration: none;
+    transform: none;
+    font-size: inherit;
   }
   /* Optional: Specific styling for the close button */
   .sidebar .close-btn {

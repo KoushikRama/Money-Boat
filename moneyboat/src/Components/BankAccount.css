@@ -1,24 +1,27 @@
 .bank-account{
     background-color: white;
     height:auto;
+    min-height: 81vh;
     max-width:inherit;
-    margin-top: 10vh;
-    margin-left: 0vw;
-    padding: 1vh;
+    margin-top: 9vh;
+    padding:5vh 5vw 5vh 5vw;
+    
 
 }
 .Hey{
-    margin: 1vh 3vw 1vh 3vw;
     padding:1vh 5vw 1vh 5vw;
     width:fit-content;
     border: 5px solid #5aa4ff;
     border-radius: 20px;
+    font-family: 'Poppins';
+    font-size: 20px;
+    font-weight: 300;
 }
 
 .addaccount-btn{
     width: fit-content;
+    margin:1vh 0 2vh 0;
     padding:2vh 2vw 2vh 2vw;
-    margin: 1vh 3vw 1vh 3vw;
     background-color: #1b65bf;
     border-radius: 15px;
     font-family: 'QuickSand';
@@ -50,7 +53,7 @@
     flex-direction: column;
 }
 
-#bankname , #accno , #accountType , #balance {
+#bankname , #accno , #accountType , #balance ,#predefinedBanks{
     width:25vw;
     height:30px;
     padding:5px;
@@ -62,7 +65,31 @@
     font-size: 15px;
     font-family: 'Quicksand';
 }
-
+#bank_name,option
+{
+    width: 25.8vw;
+    height: 45px;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: #F5F5F5;
+    color: #000000;
+    border-color: #F5F5F5;
+    font-size: 15px;
+    font-family: 'Quicksand';
+}
+datalist{
+    width:25vw;
+    height:30px;
+    padding:5px;
+    margin:5px;
+    border-radius: 10px;
+    background-color:#F5F5F5;
+    color: #000000;
+    border-color: #F5F5F5;
+    font-size: 15px;
+    font-family: 'Quicksand';
+}
 .add-button{
     width: 26vw;
     height: 43px;
@@ -74,4 +101,35 @@
     font-weight: 600;
     font-size:18px;
     font-family: 'Quicksand';
+}
+
+.bank-icon{
+    margin: 10px 0px 0 10px;
+    width:30px;
+    height:30px;
+}
+td{
+    align-content: center;
+    vertical-align: middle;
+
+}
+.bankname-table{
+    display:flex;
+    width:95%;
+    align-content: center;
+    vertical-align: middle;
+}
+.Table {
+    height: 26.25vw;
+    width: auto;
+    margin-top: 2.5vw;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    border-collapse: collapse;
+    font-size: 15px;
+    font-family: 'Poppins';
+    padding: 0 0vw 5vh 0;
 }

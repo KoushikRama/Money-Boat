@@ -14,6 +14,16 @@ export const Login = ({setIsAuthenticated}) => {
     const [password,setPassword]=useState('');
     const [checkTicked,setCheckTicked]=useState('');
     const [isLoggingin, setIsLoggingin] = useState(false);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [dialogMessage, setDialogMessage] = useState("");
+
+    const closeDialog = () => {
+        setIsDialogOpen(false);
+        if (dialogMessage.includes('Login')) {
+            setIsAuthenticated(true);
+            navigate('/home');
+        }
+    }
 
     const [errors,setErrors]=useState({
         username:"",
@@ -52,11 +62,10 @@ export const Login = ({setIsAuthenticated}) => {
             }, { withCredentials : true });
 
             localStorage.setItem('token', response.data.token);
-            alert(response.data.message);
-            navigate('/home');
-            setIsAuthenticated(true);
+            setDialogMessage('Login Successful')
+
             //window.location.reload();
-            
+            setIsDialogOpen(true);
             console.log(localStorage.getItem('token'));
             
             
@@ -83,12 +92,12 @@ export const Login = ({setIsAuthenticated}) => {
 
     return (
         <div class='Login-card'>
-            <img src={center} className="center"/>
+            <img src={center} alt='center' className="center"/>
             <div className="main-space">
                 <div class='Captions'>
                     <div class="Welcome">Welcome Back!</div>
                     <div class="Tagline">Continue Tracking your Boats</div>
-                    <img src={line} id='underline'/>
+                    <img src={line} alt='line' id='underline'/>
                 </div>            
                 <div class='login-space'> 
                     <form onSubmit={handleSubmit}>                    
@@ -117,11 +126,20 @@ export const Login = ({setIsAuthenticated}) => {
                         <button class="Loginbutton" disabled={isLoggingin}>
                         {isLoggingin? 'Loggin in...' : 'LOGIN'}</button>
                     </form>  
-                    <div class="ForgotPassword"><a href="">Forgot Password?</a></div>
+                    <div class="ForgotPassword"><a href="/forgot">Forgot Password?</a></div>
                     <div id='dont_have'><p>Don't have an Account?<Link to='/register'> Register for Free</Link> </p></div>
                 </div>
-                <img src={boat} id='boat'/>
+                <img src={boat} alt='boat'id='boat'/>
             </div>
+            {isDialogOpen && (
+                <div className="dialogBoxLogin">
+                    <div className="dialogContentLogin">
+                        <p>{dialogMessage}</p>
+                        <button onClick={closeDialog}>OK</button>
+                    </div>
+                </div>
+            )}
         </div> 
+
             );
 }

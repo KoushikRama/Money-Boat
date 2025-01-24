@@ -31,7 +31,43 @@
       "src": "life.png",
       "type": "image/png",
       "sizes": "512x512"
+    },
+    {
+      "src": "bank_icon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "budget_icon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "settings_icon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "Vault_icon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "customcard.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "Show.png",
+      "type": "image/png",
+      "sizes": "50x50"
+    },
+    {
+      "src": "Hide.png",
+      "type": "image/png",
+      "sizes": "50x50"
     }
+
   ],
   "start_url": ".",
   "display": "standalone",
