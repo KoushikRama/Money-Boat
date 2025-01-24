@@ -56,6 +56,16 @@
       "src": "customcard.png",
       "type": "image/png",
       "sizes": "512x512"
+    },
+    {
+      "src": "Show.png",
+      "type": "image/png",
+      "sizes": "50x50"
+    },
+    {
+      "src": "Hide.png",
+      "type": "image/png",
+      "sizes": "50x50"
     }
 
   ],

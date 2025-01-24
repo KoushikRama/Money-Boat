@@ -5,6 +5,8 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 const voyage = './Voyage.png';
 const center = './CenterIcon.png';
+const show = './Show.png';
+const hide = './Hide.png';
 
 export const Register = () => {
     // Defining the States
@@ -25,30 +27,36 @@ export const Register = () => {
     });
 
     const navigate = useNavigate();
-
+    const [passwordVisibility,setPasswordVisibility] = useState(false);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]+$/;
+    const passRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         let formErrors = { ...errors};
         //email check
-        if(!email){
-            formErrors.email = "*required";
-        }
-        else{
+        if (!email) {
+            formErrors.email = "*Email is required";
+        } else if (!emailRegex.test(email)) {
+            formErrors.email = "*Enter a valid email address";
+        } else {
             formErrors.email = "";
         }
         //username check
-        if(!username){
-            formErrors.username = "*required";
-        }
-        else{
+        if (!username) {
+            formErrors.username = "*Username is required";
+        } else if (username.length < 3 || username.length > 15) {
+            formErrors.username = "*Username must be between 3 and 15 characters";
+        } else {
             formErrors.username = "";
         }
         //password check
-        if(!password){
-            formErrors.password = "*required";
-        }
-        else{
+        if (!password) {
+            formErrors.password = "*Password is required";
+        } else if (!passRegex.test(password)) {
+            formErrors.password =
+              "*Password must be at least 8 characters, include an uppercase letter and a number and a special character";
+        } else {
             formErrors.password = "";
         }
         //confirmPassword check
@@ -136,23 +144,39 @@ export const Register = () => {
                     onChange={(e)=>setUsername(e.target.value)}
                     />
                     {errors.username && <span className="errors">{errors.username}</span>}
+                    <div className="passwordContainer">
                     <input
-                    type="password"
+                    type={passwordVisibility? "text": "password"}
                     id="ePassword"
                     name="ePassword"
                     placeholder="Password"
                     value={password}
                     onChange={(e)=>setPassword(e.target.value)}
                     />
+                    <span
+                        className="eye-icon"
+                        onClick={() => setPasswordVisibility(!passwordVisibility)}
+                    >
+                        {passwordVisibility ? <img src={show}/> : <img src={hide}/>}
+                    </span>
+                    </div>
                     {errors.password && <span className="errors">{errors.password}</span>}
+                    <div className="passwordContainer">
                     <input
-                    type="password"
+                    type={passwordVisibility? "text": "password"}
                     id="ePassword"
                     name="ePassword"
                     placeholder="Confirm Password"
                     value={confirmPassword}
                     onChange={(e)=>setConfirmPassword(e.target.value)}
                     />
+                    <span
+                        className="eye-icon"
+                        onClick={() => setPasswordVisibility(!passwordVisibility)}
+                    >
+                        {passwordVisibility ? <img src={show}/> : <img src={hide}/>}
+                    </span>
+                    </div>
                     {errors.confirmPassword && <span className="errors">{errors.confirmPassword}</span>}
                     <div class="Privacy">
                         <input type="checkbox" checked={checkPrivacy} onChange={(e)=>setCheckPrivacy(e.target.checked)}/>
