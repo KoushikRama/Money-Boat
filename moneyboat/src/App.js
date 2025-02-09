@@ -15,6 +15,8 @@ import { Transactions } from './Components/transactions.js';
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isSideBarOpen,setIsSideBarOpen]=useState(false);
+  const [isChecked,setIsChecked]=useState(false);
+  console.log("isCheked",isChecked);
   return (
     <Router>
       <div className="MoneyBoat">
@@ -25,11 +27,11 @@ function App() {
               isAuthenticated ? (
                 <Home />
               ) : (
-                <Login setIsAuthenticated={setIsAuthenticated} />
+                <Login setIsAuthenticated={setIsAuthenticated} setIsChecked={setIsChecked}/>
               )
             } />
           <Route path="/home" element={<Home />} />
-          <Route path="/login" element={ <Login setIsAuthenticated={setIsAuthenticated} />} />
+          <Route path="/login" element={ <Login setIsAuthenticated={setIsAuthenticated} setIsChecked={setIsChecked}/>} />
           <Route path="/dashboard" element={<Dashboard/>}/>
           <Route path="/register" element={<Register />} />
           <Route path="/bankaccount" element={<BankAccount />}/>

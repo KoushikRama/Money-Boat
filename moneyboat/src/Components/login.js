@@ -8,11 +8,11 @@ const line = './LoginLine.png'
 const boat = './boat_inclined.png'
 const center = './CenterIcon.png';
 
-export const Login = ({setIsAuthenticated}) => {
+export const Login = ({setIsAuthenticated,setIsChecked}) => {
     const navigate = useNavigate();
     const [username,setUsername]=useState('');
     const [password,setPassword]=useState('');
-    const [checkTicked,setCheckTicked]=useState('');
+    const [checkTicked,setCheckTicked]=useState(false);
     const [isLoggingin, setIsLoggingin] = useState(false);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [dialogMessage, setDialogMessage] = useState("");
@@ -48,6 +48,11 @@ export const Login = ({setIsAuthenticated}) => {
             formErrors.password="";
         }
 
+        if(checkTicked){
+            setIsChecked(true);
+        }
+
+
         if(Object.values(formErrors).some((error) => error!=="" )){
             setErrors(formErrors);
             return;
@@ -61,12 +66,11 @@ export const Login = ({setIsAuthenticated}) => {
                 password,
             }, { withCredentials : true });
 
-            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('token', response.data.token);console.log("Remembered");
             setDialogMessage('Login Successful')
 
             //window.location.reload();
             setIsDialogOpen(true);
-            console.log(localStorage.getItem('token'));
             
             
         } catch (error) {
