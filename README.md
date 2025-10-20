@@ -1,3 +1,9 @@
+## Login
+![alt text](images/Login.png)
+
+## Register
+![alt text](images/Register.png)
+
 ## Accounts
 ![alt text](images/Accounts.png)
 
