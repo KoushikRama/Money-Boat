@@ -110,7 +110,7 @@ a {
 .errors{
     color: red;
     margin-top:3px;
-    padding: 0 0 30px 10px;
+    padding: 0 0 0px 0px;
 }
 .dialogBoxLogin {
     position: fixed;

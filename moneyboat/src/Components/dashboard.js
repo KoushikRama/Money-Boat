@@ -1,8 +1,6 @@
 import React from "react";
 import './dashboard.css';
 
-const lifebuoy = '/life.png';
-    
 export const Dashboard =  () => {
 
     const transactions = [
